@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUPO GUIONICO - Guiones de Cine en Español</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid #ffd700;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .subtitulo {
+            font-size: 18px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        /* DESCRIPCIÓN */
+        .descripcion {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #ffd700;
+        }
+        
+        .descripcion p {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            background: #ffd700;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        /* PELÍCULAS */
+        h2 {
+            font-size: 32px;
+            color: #ffd700;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        .pelicula {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .pelicula:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,215,0,0.1);
+        }
+        
+        .pelicula-titulo {
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pelicula-titulo:before {
+            content: "🎬";
+            font-size: 32px;
+        }
+        
+        .secuencias {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .secuencia-item {
+            background: #252525;
+            border-radius: 8px;
+            padding: 15px;
+            transition: background 0.3s;
+        }
+        
+        .secuencia-item:hover {
+            background: #333;
+        }
+        
+        .secuencia-nombre {
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .secuencia-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .secuencia-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .link-html {
+            background: #2a6f97;
+        }
+        
+        .link-html:hover {
+            background: #1e4f6e;
+        }
+        
+        .link-pdf {
+            background: #b22222;
+        }
+        
+        .link-pdf:hover {
+            background: #8b1a1a;
+        }
+        
+        /* PIE DE PÁGINA */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            color: #666;
+        }
+        
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* MÓVIL */
+        @media (max-width: 600px) {
+            h1 { font-size: 32px; }
+            .pelicula-titulo { font-size: 24px; }
+            .secuencias { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>🎬 GRUPO GUIONICO</h1>
+            <div class="subtitulo">Guiones de cine en español • Formato profesional</div>
+        </header>
+        
+        <div class="descripcion">
+            <p>📚 <strong>Colección de guiones cinematográficos</strong> traducidos al español con alta fidelidad al formato original y al estilo de los escritores.</p>
+            
+            <div class="badges">
+                <span class="badge">✅ 8 secuencias por película</span>
+                <span class="badge">📖 HTML (lectura online)</span>
+                <span class="badge">📥 PDF (descarga)</span>
+                <span class="badge">🎯 Traducción fiel</span>
+            </div>
+            
+            <p>Cada película tiene su propia carpeta con archivos individuales para cada secuencia. Puedes leer online o descargar para estudio.</p>
+        </div>
+        
+        <h2>🎯 PELÍCULAS DISPONIBLES</h2>
+        
+        <!-- EL PADRINO -->
+        <div class="pelicula">
+            <div class="pelicula-titulo">El Padrino</div>
+            <p style="color: #888; margin-bottom: 15px;">Guión original: Mario Puzo & Francis Ford Coppola • Segundo borrador • 1 de marzo de 1971</p>
+            
+            <div class="secuencias">
+                <!-- SECUENCIA 1 -->
+                <div class="secuencia-item">
+                    <div class="secuencia-nombre">SECUENCIA 1</div>
+                    <div class="secuencia-links">
+                        <a href="el-padrino-primera-secuencia.html" class="link-html">📖 Leer</a>
+                        <a href="el-padrino-primera-secuencia.pdf" class="link-pdf">📥 PDF</a>
+                    </div>
+                </div>
+                
+                <!-- Las demás secuencias (cuando las subas) -->
+                <div class="secuencia-item" style="opacity: 0.5;">
+                    <div class="secuencia-nombre">SECUENCIA 2 (próximamente)</div>
+                    <div class="secuencia-links">
+                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
+                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
+                    </div>
+                </div>
+                
+                <div class="secuencia-item" style="opacity: 0.5;">
+                    <div class="secuencia-nombre">SECUENCIA 3 (próximamente)</div>
+                    <div class="secuencia-links">
+                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
+                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
+                    </div>
+                </div>
+                
+                <div class="secuencia-item" style="opacity: 0.5;">
+                    <div class="secuencia-nombre">SECUENCIA 4 (próximamente)</div>
+                    <div class="secuencia-links">
+                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
+                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
+                    </div>
+                </div>
+                
+                <div class="secuencia-item" style="opacity: 0.5;">
+                    <div class="secuencia-nombre">SECUENCIA 5 (próximamente)</div>
+                    <div class="secuencia-links">
+                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
+                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="color: #666; margin-top: 20px; font-style: italic; text-align: right;">
+                Traducción: GRUPO GUIONICO
+            </p>
+        </div>
+        
+        <!-- PRÓXIMAS PELÍCULAS -->
+        <div style="background: #111; padding: 30px; border-radius: 10px; margin-top: 20px; border: 1px dashed #333; text-align: center;">
+            <h3 style="color: #ffd700; margin-bottom: 15px;">🎬 PRÓXIMAS PELÍCULAS</h3>
+            <p style="color: #666;">Scarface • Pulp Fiction • Alien • El Padrino II • Y más...</p>
+        </div>
+        
+        <footer>
+            <p>© GRUPO GUIONICO - Traducciones para estudio y conservación cultural</p>
+            <p style="margin-top: 10px;">📧 <a href="#">grupoguionico@gmail.com</a></p>
+            <p style="margin-top: 20px; font-size: 12px;">Todas las traducciones son con fines educativos y de análisis cinematográfico.</p>
+        </footer>
+    </div>
+</body>
+</html>
