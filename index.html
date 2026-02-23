@@ -622,7 +622,10 @@
     <script>
         // Base de datos de películas
         const peliculas = [
-            { id: 1, titulo: "El Padrino", imagen: "https://picsum.photos/400/600?random=1", disponible: true, carpeta: "el-padrino", secuencias: 8 },
+            { id: 1, titulo: "El Padrino", imagen: "https://picsum.photos/400/600?random=1", disponible: true, carpeta: "el-padrino", secuencias: 8,   archivos: [
+            { html: "el-padrino-primera-secuencia.html", pdf: "el-padrino-primera-secuencia.pdf" },
+            { html: "el-padrino-segunda-secuencia.html", pdf: "el-padrino-segunda-secuencia.pdf" }
+        ] },
             { id: 2, titulo: "Scarface", imagen: "https://picsum.photos/400/600?random=2", disponible: true, carpeta: "scarface", secuencias: 8 },
             { id: 3, titulo: "Pulp Fiction", imagen: "https://picsum.photos/400/600?random=3", disponible: false },
             { id: 4, titulo: "Alien", imagen: "https://picsum.photos/400/600?random=4", disponible: false },
@@ -761,3 +764,4 @@
 </body>
 
 </html>
+
