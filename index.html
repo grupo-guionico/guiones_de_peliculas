@@ -1,285 +1,763 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRUPO GUIONICO - Guiones de Cine en Español</title>
+    <title>GRUPO GUIONICO – Guiones de cine</title>
     <style>
+        /* ===== ESTILOS GENERALES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             background: #0a0a0a;
-            color: #ffffff;
+            color: white;
             font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .contenedor {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* ===== CONTENIDO PRINCIPAL (lo que se desenfoca) ===== */
+        #contenido-principal {
+            transition: filter 0.3s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
-        
-        /* HEADER */
+
+        /* Cuando el footer está activo, SOLO el contenido se desenfoca */
+        body.footer-activo #contenido-principal {
+            filter: blur(3px);
+        }
+
+        /* ===== HEADER ===== */
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 2em 1em;
             border-bottom: 2px solid #ffd700;
-            margin-bottom: 40px;
         }
-        
+
         h1 {
-            font-size: 48px;
+            font-size: clamp(2rem, 8vw, 4rem);
             color: #ffd700;
-            margin-bottom: 10px;
-            text-transform: uppercase;
             letter-spacing: 3px;
         }
-        
+
         .subtitulo {
-            font-size: 18px;
             color: #888;
-            font-style: italic;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-top: 0.5em;
         }
-        
-        /* DESCRIPCIÓN */
-        .descripcion {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            border-left: 5px solid #ffd700;
-        }
-        
-        .descripcion p {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        
-        .badges {
+
+        /* ===== BUSCADOR ===== */
+        .buscador-container {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        
-        .badge {
-            background: #ffd700;
-            color: #000;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        
-        /* PELÍCULAS */
-        h2 {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-        
-        .pelicula {
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            transition: transform 0.3s;
-        }
-        
-        .pelicula:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255,215,0,0.1);
-        }
-        
-        .pelicula-titulo {
-            font-size: 28px;
-            color: #ffd700;
-            margin-bottom: 20px;
-            display: flex;
+            justify-content: center;
             align-items: center;
             gap: 10px;
+            margin: 2em 1em;
+            flex-wrap: wrap;
         }
-        
-        .pelicula-titulo:before {
-            content: "🎬";
-            font-size: 32px;
+
+        #buscar {
+            width: 90%;
+            max-width: 400px;
+            padding: 1em;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            color: white;
+            border-radius: 50px;
+            font-size: 1em;
+            outline: none;
+            transition: 0.3s;
         }
-        
-        .secuencias {
+
+        #buscar:focus {
+            border-color: #ffd700;
+        }
+
+        .btn-reset {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 0.8em 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-reset:hover {
+            background: #ffd700;
+            color: black;
+        }
+
+        /* ===== GRID DE PELÍCULAS ===== */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            flex: 1;
         }
-        
-        .secuencia-item {
-            background: #252525;
+
+        .pelicula {
+            position: relative;
+            aspect-ratio: 2/3;
+            background: #1a1a1a;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pelicula:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            z-index: 10;
+        }
+
+        .pelicula img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pelicula-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 1.5em 0.8em;
+        }
+
+        .pelicula-info h3 {
+            color: #ffd700;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.3em;
+        }
+
+        .pelicula-info p {
+            color: #ccc;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+        }
+
+        .pelicula.proximamente {
+            opacity: 0.5;
+            filter: grayscale(80%);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .pelicula.proximamente:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pelicula.proximamente::after {
+            content: "🔒 PRÓXIMAMENTE";
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+        }
+
+        /* ===== PAGINACIÓN ===== */
+        .paginacion {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+
+        .paginacion button {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: white;
+            padding: 0.5em 1.5em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .paginacion button:hover:not(:disabled) {
+            background: #ffd700;
+            color: black;
+        }
+
+        .paginacion button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        #pageIndicator {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* ===== BOTÓN CAFÉ ===== */
+        .cafe {
+            text-align: center;
+            margin: 1em 0 2em;
+        }
+
+        .btn-cafe {
+            display: inline-block;
+            background: #ffaa00;
+            color: black;
+            text-decoration: none;
+            padding: 1em 2.5em;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cafe:hover {
+            transform: scale(1.05);
+            background: #ffc34d;
+        }
+
+        /* ===== FOOTER TRIGGER (hamburguesa) ===== */
+        .footer-trigger {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .footer-trigger span {
+            color: #ffd700;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 2rem;
+            padding: 5px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            transition: 0.3s;
+            border: 1px solid #ffd700;
+        }
+
+        .footer-trigger span:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* ===== FOOTER DESPLEGABLE (ahora fuera del contenido) ===== */
+        .footer-desplegable {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #1a1a1a;
+            border-top: 3px solid #ffd700;
+            padding: 2.5rem 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 -5px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .footer-desplegable.activo {
+            transform: translateY(0);
+        }
+
+        .footer-contenido {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: #ccc;
+            position: relative;
+        }
+
+        .footer-izquierda {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-izquierda .copyright {
+            font-size: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-izquierda .email {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .footer-derecha {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .footer-derecha a {
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.8rem;
+            transition: 0.3s;
+        }
+
+        .footer-derecha a:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .footer-cerrar {
+            position: absolute;
+            top: -40px;
+            right: 20px;
+            color: #ffd700;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #1a1a1a;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+        }
+
+        .footer-cerrar:hover {
+            background: #ffd700;
+            color: black;
+        }
+
+        /* ===== MODAL DE PAGOS ===== */
+        #modalPagos {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 20000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #modalPagos.activo {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-pagos-contenido {
+            background: #1a1a1a;
+            padding: 2em;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid #ffd700;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        #modalPagos.activo .modal-pagos-contenido {
+            transform: scale(1);
+        }
+
+        .modal-pagos-contenido h2 {
+            color: #ffd700;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+
+        .metodo-pago {
+            background: #2a2a2a;
+            margin: 1em 0;
+            padding: 1em;
             border-radius: 8px;
-            padding: 15px;
-            transition: background 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
+        .metodo-pago span {
+            color: white;
+            font-weight: bold;
+        }
+
+        .metodo-pago a {
+            background: #ffd700;
+            color: black;
+            text-decoration: none;
+            padding: 0.5em 1.5em;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .metodo-pago a:hover {
+            transform: scale(1.05);
+        }
+
+        .cerrar-modal-pagos {
+            text-align: center;
+            margin-top: 2em;
+            color: #888;
+            cursor: pointer;
+            padding: 0.5em;
+        }
+
+        .cerrar-modal-pagos:hover {
+            color: white;
+        }
+
+        /* ===== MODAL DE SECUENCIAS ===== */
+        #modalSecuencias {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #modalSecuencias.activo {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-contenido {
+            background: #1a1a1a;
+            padding: 2em;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #ffd700;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        #modalSecuencias.activo .modal-contenido {
+            transform: scale(1);
+        }
+
+        .modal-contenido h2 {
+            color: #ffd700;
+            margin-bottom: 1.5em;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .secuencia-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2a2a2a;
+            margin: 0.5em 0;
+            padding: 0.8em 1.2em;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
         .secuencia-item:hover {
             background: #333;
         }
-        
-        .secuencia-nombre {
-            font-weight: bold;
-            color: #ffd700;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .secuencia-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .secuencia-links a {
-            color: #fff;
+
+        .secuencia-item a {
+            color: white;
             text-decoration: none;
-            font-size: 14px;
-            padding: 5px 10px;
+            margin-left: 1em;
+            padding: 0.3em 1em;
             border-radius: 5px;
-            transition: all 0.3s;
+            background: #ffd700;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s;
         }
-        
-        .link-html {
-            background: #2a6f97;
+
+        .secuencia-item a:hover {
+            transform: scale(1.05);
         }
-        
-        .link-html:hover {
-            background: #1e4f6e;
-        }
-        
-        .link-pdf {
-            background: #b22222;
-        }
-        
-        .link-pdf:hover {
-            background: #8b1a1a;
-        }
-        
-        /* PIE DE PÁGINA */
-        footer {
+
+        .cerrar-modal {
             text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #333;
-            margin-top: 40px;
-            color: #666;
+            margin-top: 2em;
+            color: #888;
+            cursor: pointer;
+            padding: 0.5em;
+            transition: 0.3s;
         }
-        
-        footer a {
-            color: #ffd700;
-            text-decoration: none;
+
+        .cerrar-modal:hover {
+            color: white;
         }
-        
-        footer a:hover {
-            text-decoration: underline;
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-contenido {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-derecha {
+                justify-content: center;
+            }
         }
-        
-        /* MÓVIL */
-        @media (max-width: 600px) {
-            h1 { font-size: 32px; }
-            .pelicula-titulo { font-size: 24px; }
-            .secuencias { grid-template-columns: 1fr; }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="contenedor">
+    <!-- ===== CONTENIDO PRINCIPAL (se desenfoca con el footer) ===== -->
+    <div id="contenido-principal">
         <header>
             <h1>🎬 GRUPO GUIONICO</h1>
-            <div class="subtitulo">Guiones de cine en español • Formato profesional</div>
+            <div class="subtitulo">Guiones de cine en español</div>
         </header>
-        
-        <div class="descripcion">
-            <p>📚 <strong>Colección de guiones cinematográficos</strong> traducidos al español con alta fidelidad al formato original y al estilo de los escritores.</p>
-            
-            <div class="badges">
-                <span class="badge">✅ 8 secuencias por película</span>
-                <span class="badge">📖 HTML (lectura online)</span>
-                <span class="badge">📥 PDF (descarga)</span>
-                <span class="badge">🎯 Traducción fiel</span>
-            </div>
-            
-            <p>Cada película tiene su propia carpeta con archivos individuales para cada secuencia. Puedes leer online o descargar para estudio.</p>
+
+        <div class="buscador-container">
+            <input type="text" id="buscar" placeholder="🔍 Buscar película...">
+            <button class="btn-reset" id="resetBusqueda">↶ Ver todas</button>
         </div>
-        
-        <h2>🎯 PELÍCULAS DISPONIBLES</h2>
-        
-        <!-- EL PADRINO -->
-        <div class="pelicula">
-            <div class="pelicula-titulo">El Padrino</div>
-            <p style="color: #888; margin-bottom: 15px;">Guión original: Mario Puzo & Francis Ford Coppola • Segundo borrador • 1 de marzo de 1971</p>
-            
-            <div class="secuencias">
-                <!-- SECUENCIA 1 -->
-                <div class="secuencia-item">
-                    <div class="secuencia-nombre">SECUENCIA 1</div>
-                    <div class="secuencia-links">
-                        <a href="el-padrino-primera-secuencia.html" class="link-html">📖 Leer</a>
-                        <a href="el-padrino-primera-secuencia.pdf" class="link-pdf">📥 PDF</a>
-                    </div>
-                </div>
-                
-                <!-- Las demás secuencias (cuando las subas) -->
-                <div class="secuencia-item" style="opacity: 0.5;">
-                    <div class="secuencia-nombre">SECUENCIA 2 (próximamente)</div>
-                    <div class="secuencia-links">
-                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
-                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
-                    </div>
-                </div>
-                
-                <div class="secuencia-item" style="opacity: 0.5;">
-                    <div class="secuencia-nombre">SECUENCIA 3 (próximamente)</div>
-                    <div class="secuencia-links">
-                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
-                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
-                    </div>
-                </div>
-                
-                <div class="secuencia-item" style="opacity: 0.5;">
-                    <div class="secuencia-nombre">SECUENCIA 4 (próximamente)</div>
-                    <div class="secuencia-links">
-                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
-                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
-                    </div>
-                </div>
-                
-                <div class="secuencia-item" style="opacity: 0.5;">
-                    <div class="secuencia-nombre">SECUENCIA 5 (próximamente)</div>
-                    <div class="secuencia-links">
-                        <span class="link-html" style="opacity: 0.5;">📖 Leer</span>
-                        <span class="link-pdf" style="opacity: 0.5;">📥 PDF</span>
-                    </div>
-                </div>
-            </div>
-            
-            <p style="color: #666; margin-top: 20px; font-style: italic; text-align: right;">
-                Traducción: GRUPO GUIONICO
-            </p>
+
+        <div class="grid" id="grid"></div>
+
+        <div class="paginacion">
+            <button id="prevPage" disabled>⬅ Anterior</button>
+            <span id="pageIndicator">1</span>
+            <button id="nextPage">Siguiente ➡</button>
         </div>
-        
-        <!-- PRÓXIMAS PELÍCULAS -->
-        <div style="background: #111; padding: 30px; border-radius: 10px; margin-top: 20px; border: 1px dashed #333; text-align: center;">
-            <h3 style="color: #ffd700; margin-bottom: 15px;">🎬 PRÓXIMAS PELÍCULAS</h3>
-            <p style="color: #666;">Scarface • Pulp Fiction • Alien • El Padrino II • Y más...</p>
+
+        <div class="cafe">
+            <button class="btn-cafe" id="btnCafe">☕ INVÍTANOS UN CAFÉ</button>
         </div>
-        
-        <footer>
-            <p>© GRUPO GUIONICO - Traducciones para estudio y conservación cultural</p>
-            <p style="margin-top: 10px;">📧 <a href="#">grupoguionico@gmail.com</a></p>
-            <p style="margin-top: 20px; font-size: 12px;">Todas las traducciones son con fines educativos y de análisis cinematográfico.</p>
-        </footer>
     </div>
+
+    <!-- ===== FOOTER TRIGGER (hamburguesa) ===== -->
+    <div class="footer-trigger">
+        <span id="footerTrigger">☰</span>
+    </div>
+
+    <!-- ===== FOOTER DESPLEGABLE (FUERA del contenido) ===== -->
+    <div class="footer-desplegable" id="footerDesplegable">
+        <div class="footer-contenido">
+            <div class="footer-izquierda">
+                <div class="copyright">© GRUPO GUIONICO - Traducciones para estudio y conservación cultural</div>
+                <div class="email">📧 grupoguionico@gmail.com</div>
+            </div>
+            <div class="footer-derecha">
+                <a href="https://youtube.com/@grupoguionico" target="_blank">📺</a>
+                <a href="#" target="_blank">📱</a>
+            </div>
+            <div class="footer-cerrar" id="footerCerrar">✕</div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE PAGOS ===== -->
+    <div id="modalPagos">
+        <div class="modal-pagos-contenido">
+            <h2>☕ APOYA EL PROYECTO</h2>
+            <p style="color: white; text-align: center; margin-bottom: 2rem;">Elige tu método de pago:</p>
+
+            <div class="metodo-pago">
+                <span>PayPal</span>
+                <a href="#" target="_blank">Pagar</a>
+            </div>
+
+            <div class="metodo-pago">
+                <span>Bancolombia</span>
+                <a href="#" target="_blank">Transferir</a>
+            </div>
+
+            <div class="metodo-pago">
+                <span>Nequi</span>
+                <a href="#" target="_blank">Pagar</a>
+            </div>
+
+            <div class="metodo-pago">
+                <span>Davivienda</span>
+                <a href="#" target="_blank">Transferir</a>
+            </div>
+
+            <div class="cerrar-modal-pagos" id="cerrarModalPagos">✕ Cerrar</div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE SECUENCIAS ===== -->
+    <div id="modalSecuencias">
+        <div class="modal-contenido" id="modalSecuenciasContenido"></div>
+    </div>
+
+    <script>
+        // Base de datos de películas
+        const peliculas = [
+            { id: 1, titulo: "El Padrino", imagen: "https://picsum.photos/400/600?random=1", disponible: true, carpeta: "el-padrino", secuencias: 8 },
+            { id: 2, titulo: "Scarface", imagen: "https://picsum.photos/400/600?random=2", disponible: true, carpeta: "scarface", secuencias: 8 },
+            { id: 3, titulo: "Pulp Fiction", imagen: "https://picsum.photos/400/600?random=3", disponible: false },
+            { id: 4, titulo: "Alien", imagen: "https://picsum.photos/400/600?random=4", disponible: false },
+            { id: 5, titulo: "El Padrino II", imagen: "https://picsum.photos/400/600?random=5", disponible: false },
+            { id: 6, titulo: "Taxi Driver", imagen: "https://picsum.photos/400/600?random=6", disponible: false },
+            { id: 7, titulo: "Goodfellas", imagen: "https://picsum.photos/400/600?random=7", disponible: false },
+            { id: 8, titulo: "Kill Bill", imagen: "https://picsum.photos/400/600?random=8", disponible: false },
+            { id: 9, titulo: "Reservoir Dogs", imagen: "https://picsum.photos/400/600?random=9", disponible: false },
+            { id: 10, titulo: "Apocalypse Now", imagen: "https://picsum.photos/400/600?random=10", disponible: false },
+            { id: 11, titulo: "La naranja mecánica", imagen: "https://picsum.photos/400/600?random=11", disponible: false },
+            { id: 12, titulo: "El club de la lucha", imagen: "https://picsum.photos/400/600?random=12", disponible: false }
+        ];
+
+        let pagina = 1;
+        let filtradas = peliculas;
+        const porPagina = 12;
+
+        const grid = document.getElementById('grid');
+        const modalSec = document.getElementById('modalSecuencias');
+        const modalSecContenido = document.getElementById('modalSecuenciasContenido');
+        const resetBtn = document.getElementById('resetBusqueda');
+        const buscarInput = document.getElementById('buscar');
+
+        function mostrarPagina() {
+            const inicio = (pagina - 1) * porPagina;
+            const fin = inicio + porPagina;
+            const pagActual = filtradas.slice(inicio, fin);
+
+            grid.innerHTML = pagActual.map(p => `
+                <div class="pelicula ${p.disponible ? '' : 'proximamente'}" data-id="${p.id}">
+                    <img src="${p.imagen}" alt="${p.titulo}">
+                    <div class="pelicula-info">
+                        <h3>${p.titulo}</h3>
+                        <p>${p.disponible ? '8 secuencias' : 'Próximamente'}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.pelicula:not(.proximamente)').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = el.dataset.id;
+                    const peli = peliculas.find(p => p.id == id);
+                    if (peli?.disponible) abrirModalSecuencias(peli);
+                });
+            });
+
+            const total = Math.ceil(filtradas.length / porPagina);
+            document.getElementById('pageIndicator').textContent = `${pagina}/${total}`;
+            document.getElementById('prevPage').disabled = pagina === 1;
+            document.getElementById('nextPage').disabled = pagina === total;
+        }
+
+        function abrirModalSecuencias(p) {
+            let html = `<h2>${p.titulo}</h2>`;
+            for (let i = 1; i <= p.secuencias; i++) {
+                html += `
+                    <div class="secuencia-item">
+                        <span>Secuencia ${i}</span>
+                        <div>
+                            <a href="${p.carpeta}/secuencia${i}.html" target="_blank">📖 HTML</a>
+                            <a href="${p.carpeta}/secuencia${i}.pdf" target="_blank">📥 PDF</a>
+                        </div>
+                    </div>
+                `;
+            }
+            html += '<div class="cerrar-modal" onclick="document.getElementById(\'modalSecuencias\').classList.remove(\'activo\')">✕ Cerrar</div>';
+            modalSecContenido.innerHTML = html;
+            modalSec.classList.add('activo');
+        }
+
+        function abrirModalPagos() {
+            document.getElementById('modalPagos').classList.add('activo');
+        }
+
+        buscarInput.addEventListener('input', (e) => {
+            const texto = e.target.value.toLowerCase();
+            filtradas = peliculas.filter(p => p.titulo.toLowerCase().includes(texto));
+            pagina = 1;
+            mostrarPagina();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            buscarInput.value = '';
+            filtradas = peliculas;
+            pagina = 1;
+            mostrarPagina();
+        });
+
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (pagina > 1) { pagina--; mostrarPagina(); }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            const total = Math.ceil(filtradas.length / porPagina);
+            if (pagina < total) { pagina++; mostrarPagina(); }
+        });
+
+        modalSec.addEventListener('click', (e) => {
+            if (e.target === modalSec) modalSec.classList.remove('activo');
+        });
+
+        document.getElementById('btnCafe').addEventListener('click', abrirModalPagos);
+
+        const modalPagos = document.getElementById('modalPagos');
+        const cerrarPagos = document.getElementById('cerrarModalPagos');
+
+        cerrarPagos.addEventListener('click', () => {
+            modalPagos.classList.remove('activo');
+        });
+
+        modalPagos.addEventListener('click', (e) => {
+            if (e.target === modalPagos) modalPagos.classList.remove('activo');
+        });
+
+        // ===== FOOTER DESPLEGABLE =====
+        const footerTrigger = document.getElementById('footerTrigger');
+        const footerDesplegable = document.getElementById('footerDesplegable');
+        const footerCerrar = document.getElementById('footerCerrar');
+        const body = document.body;
+
+        function abrirFooter() {
+            footerDesplegable.classList.add('activo');
+            body.classList.add('footer-activo');
+        }
+
+        function cerrarFooter() {
+            footerDesplegable.classList.remove('activo');
+            body.classList.remove('footer-activo');
+        }
+
+        footerTrigger.addEventListener('click', abrirFooter);
+        footerCerrar.addEventListener('click', cerrarFooter);
+
+        mostrarPagina();
+    </script>
 </body>
+
 </html>
