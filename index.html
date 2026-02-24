@@ -23,6 +23,11 @@
             flex-direction: column; /* Organiza los elementos en columna */
         }
 
+
+Edit
+
+Preview
+
         /* Contenedor principal (todo excepto el footer) */
         #contenido-principal {
             transition: filter 0.3s ease; /* Transición suave para el blur */
@@ -52,13 +57,18 @@ header img {
     max-width: 180px;
     height: auto;
     display: block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
 }
 
 /* El buscador-container dentro del header */
 header .buscador-container {
     flex: 1;  /* Ocupa el espacio restante */
     margin: 0;
-    min-width: 300px;
+    min-width: 100px;
 }
 
 /* Responsive: en móvil se apilan */
@@ -600,7 +610,7 @@ header .buscador-container {
         -->
         <header>
     <div style="text-align: center; margin-bottom: 20px;">
-        <img src="imagenes/imagotipo-grupo-guionico.png" alt="GRUPO GUIONICO" style="max-width: 200px; height: auto;">
+        <img src="imagenes/imagotipo-grupo-guionico.png" alt="GRUPO GUIONICO" style="max-width: 400px; height: auto;">
     </div>
     
     <div class="buscador-container" style="margin-top: 0;">
@@ -876,6 +886,7 @@ header .buscador-container {
     </script>
 </body>
 </html>
+
 
 
 
