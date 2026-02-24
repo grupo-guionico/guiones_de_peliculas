@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRUPO GUIONICO – Guiones de cine</title>
     <style>
         /* ===== ESTILOS GENERALES ===== */
+        /* Reset: elimina márgenes y paddings por defecto de todos los elementos */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box; /* Hace que el padding no afecte el ancho total */
         }
 
+        /* Estilos del body: fondo oscuro, texto blanco, fuente moderna */
         body {
             background: #0a0a0a;
             color: white;
             font-family: 'Segoe UI', Arial, sans-serif;
-            min-height: 100vh;
+            min-height: 100vh; /* Mínimo alto de toda la pantalla */
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Organiza los elementos en columna */
         }
 
-        /* ===== CONTENIDO PRINCIPAL (lo que se desenfoca) ===== */
+        /* Contenedor principal (todo excepto el footer) */
         #contenido-principal {
-            transition: filter 0.3s ease;
-            flex: 1;
+            transition: filter 0.3s ease; /* Transición suave para el blur */
+            flex: 1; /* Ocupa todo el espacio disponible */
             display: flex;
             flex-direction: column;
         }
 
-        /* Cuando el footer está activo, SOLO el contenido se desenfoca */
+        /* Cuando el footer está activo, el contenido principal se desenfoca */
         body.footer-activo #contenido-principal {
             filter: blur(3px);
         }
@@ -39,13 +40,14 @@
         header {
             text-align: center;
             padding: 2em 1em;
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid #ffd700; /* Línea dorada abajo */
         }
 
+        /* Título principal: responsive con clamp (mínimo 2rem, ideal 8vw, máximo 4rem) */
         h1 {
             font-size: clamp(2rem, 8vw, 4rem);
-            color: #ffd700;
-            letter-spacing: 3px;
+            color: #ffd700; /* Dorado */
+            letter-spacing: 3px; /* Espaciado entre letras */
         }
 
         .subtitulo {
@@ -61,7 +63,7 @@
             align-items: center;
             gap: 10px;
             margin: 2em 1em;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* En móvil, se apilan */
         }
 
         #buscar {
@@ -71,16 +73,17 @@
             background: #1a1a1a;
             border: 2px solid #333;
             color: white;
-            border-radius: 50px;
+            border-radius: 50px; /* Bordes redondeados */
             font-size: 1em;
-            outline: none;
+            outline: none; /* Quita el borde azul al hacer focus */
             transition: 0.3s;
         }
 
         #buscar:focus {
-            border-color: #ffd700;
+            border-color: #ffd700; /* Borde dorado al enfocar */
         }
 
+        /* Botón para resetear la búsqueda */
         .btn-reset {
             background: transparent;
             border: 2px solid #ffd700;
@@ -98,6 +101,7 @@
         }
 
         /* ===== GRID DE PELÍCULAS ===== */
+        /* Grid de 4 columnas en PC, sin márgenes entre imágenes */
         .grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -105,33 +109,36 @@
             flex: 1;
         }
 
+        /* Cada tarjeta de película */
         .pelicula {
-            position: relative;
-            aspect-ratio: 2/3;
+            position: relative; /* Para posicionar la información encima */
+            aspect-ratio: 2/3; /* Proporción 2:3 (formato cine) */
             background: #1a1a1a;
-            overflow: hidden;
+            overflow: hidden; /* Esconde lo que sobresalga */
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; /* Transición suave al hacer hover */
         }
 
+        /* Efecto hover: la tarjeta se levanta y tiene sombra */
         .pelicula:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
-            z-index: 10;
+            z-index: 10; /* Para que se superponga a las demás */
         }
 
         .pelicula img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* La imagen cubre todo sin deformarse */
         }
 
+        /* Información superpuesta en la parte inferior de la tarjeta */
         .pelicula-info {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            background: linear-gradient(transparent, rgba(0,0,0,0.9)); /* Degradado oscuro */
             padding: 1.5em 0.8em;
         }
 
@@ -146,11 +153,12 @@
             font-size: clamp(0.7rem, 2vw, 0.9rem);
         }
 
+        /* Películas "próximamente" se ven opacas */
         .pelicula.proximamente {
             opacity: 0.5;
             filter: grayscale(80%);
             cursor: default;
-            pointer-events: none;
+            pointer-events: none; /* No se puede hacer clic */
         }
 
         .pelicula.proximamente:hover {
@@ -163,7 +171,7 @@
             position: absolute;
             bottom: 10px;
             left: 10px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             color: white;
             padding: 4px 8px;
             font-size: 0.7rem;
@@ -243,17 +251,17 @@
             cursor: pointer;
             font-size: 2rem;
             padding: 5px 15px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             border-radius: 5px;
             transition: 0.3s;
             border: 1px solid #ffd700;
         }
 
         .footer-trigger span:hover {
-            background: rgba(255, 215, 0, 0.3);
+            background: rgba(255,215,0,0.3);
         }
 
-        /* ===== FOOTER DESPLEGABLE (ahora fuera del contenido) ===== */
+        /* ===== FOOTER DESPLEGABLE ===== */
         .footer-desplegable {
             position: fixed;
             bottom: 0;
@@ -262,14 +270,14 @@
             background: #1a1a1a;
             border-top: 3px solid #ffd700;
             padding: 2.5rem 20px;
-            transform: translateY(100%);
+            transform: translateY(100%); /* Oculto inicialmente */
             transition: transform 0.3s ease;
             z-index: 1001;
-            box-shadow: 0 -5px 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 -5px 20px rgba(255,215,0,0.2);
         }
 
         .footer-desplegable.activo {
-            transform: translateY(0);
+            transform: translateY(0); /* Visible al activarse */
         }
 
         .footer-contenido {
@@ -349,7 +357,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
             z-index: 20000;
             justify-content: center;
@@ -433,7 +441,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
             z-index: 10000;
             justify-content: center;
@@ -515,29 +523,38 @@
             color: white;
         }
 
+        /* ===== RESPONSIVE (para móviles y tablets) ===== */
         @media (max-width: 768px) {
             .grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
             }
-
+            
             .footer-contenido {
                 flex-direction: column;
                 text-align: center;
             }
-
+            
             .footer-derecha {
                 justify-content: center;
+            }
+            
+            .modal-contenido {
+                width: 95%;
+                padding: 1.5em;
             }
         }
 
         @media (max-width: 480px) {
             .grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 columna en móviles */
+            }
+            
+            .pelicula {
+                max-width: 100%;
             }
         }
     </style>
 </head>
-
 <body>
     <!-- ===== CONTENIDO PRINCIPAL (se desenfoca con el footer) ===== -->
     <div id="contenido-principal">
@@ -569,7 +586,7 @@
         <span id="footerTrigger">☰</span>
     </div>
 
-    <!-- ===== FOOTER DESPLEGABLE (FUERA del contenido) ===== -->
+    <!-- ===== FOOTER DESPLEGABLE ===== -->
     <div class="footer-desplegable" id="footerDesplegable">
         <div class="footer-contenido">
             <div class="footer-izquierda">
@@ -589,27 +606,27 @@
         <div class="modal-pagos-contenido">
             <h2>☕ APOYA EL PROYECTO</h2>
             <p style="color: white; text-align: center; margin-bottom: 2rem;">Elige tu método de pago:</p>
-
+            
             <div class="metodo-pago">
                 <span>PayPal</span>
                 <a href="#" target="_blank">Pagar</a>
             </div>
-
+            
             <div class="metodo-pago">
                 <span>Bancolombia</span>
                 <a href="#" target="_blank">Transferir</a>
             </div>
-
+            
             <div class="metodo-pago">
                 <span>Nequi</span>
                 <a href="#" target="_blank">Pagar</a>
             </div>
-
+            
             <div class="metodo-pago">
                 <span>Davivienda</span>
                 <a href="#" target="_blank">Transferir</a>
             </div>
-
+            
             <div class="cerrar-modal-pagos" id="cerrarModalPagos">✕ Cerrar</div>
         </div>
     </div>
@@ -619,14 +636,26 @@
         <div class="modal-contenido" id="modalSecuenciasContenido"></div>
     </div>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Base de datos de películas
+        // ===== BASE DE DATOS DE PELÍCULAS =====
+        // Array de objetos, cada uno representa una película
         const peliculas = [
-            { id: 1, titulo: "El Padrino", imagen: "https://picsum.photos/400/600?random=1", disponible: true, carpeta: "el-padrino", secuencias: 8,   archivos: [
-            { html: "el-padrino-primera-secuencia.html", pdf: "el-padrino-primera-secuencia.pdf" },
-            { html: "el-padrino-segunda-secuencia.html", pdf: "el-padrino-segunda-secuencia.pdf" }
-        ] },
-            { id: 2, titulo: "Scarface", imagen: "https://picsum.photos/400/600?random=2", disponible: true, carpeta: "scarface", secuencias: 8 },
+            { 
+                id: 1, 
+                titulo: "El Padrino", 
+                imagen: "https://picsum.photos/400/600?random=1", // Imagen de placeholder
+                disponible: true, // true = ya tiene secuencias, false = próximamente
+                carpeta: "el-padrino" // Nombre de la carpeta donde están los archivos
+                // NOTA: Las secuencias se manejan directamente en el modal, no aquí
+            },
+            { 
+                id: 2, 
+                titulo: "Scarface", 
+                imagen: "https://picsum.photos/400/600?random=2", 
+                disponible: true, 
+                carpeta: "scarface" 
+            },
             { id: 3, titulo: "Pulp Fiction", imagen: "https://picsum.photos/400/600?random=3", disponible: false },
             { id: 4, titulo: "Alien", imagen: "https://picsum.photos/400/600?random=4", disponible: false },
             { id: 5, titulo: "El Padrino II", imagen: "https://picsum.photos/400/600?random=5", disponible: false },
@@ -639,21 +668,27 @@
             { id: 12, titulo: "El club de la lucha", imagen: "https://picsum.photos/400/600?random=12", disponible: false }
         ];
 
-        let pagina = 1;
-        let filtradas = peliculas;
-        const porPagina = 12;
-
+        // ===== VARIABLES GLOBALES =====
+        let pagina = 1;                      // Página actual (para paginación)
+        let filtradas = peliculas;            // Películas filtradas por búsqueda
+        const porPagina = 12;                 // 12 películas por página (4x3)
+        
+        // ===== ELEMENTOS DEL DOM =====
+        // Capturamos los elementos HTML con los que vamos a interactuar
         const grid = document.getElementById('grid');
         const modalSec = document.getElementById('modalSecuencias');
         const modalSecContenido = document.getElementById('modalSecuenciasContenido');
         const resetBtn = document.getElementById('resetBusqueda');
         const buscarInput = document.getElementById('buscar');
 
+        // ===== FUNCIÓN PARA MOSTRAR LA PÁGINA ACTUAL =====
         function mostrarPagina() {
+            // Calcular qué películas mostrar según la página actual
             const inicio = (pagina - 1) * porPagina;
             const fin = inicio + porPagina;
             const pagActual = filtradas.slice(inicio, fin);
 
+            // Generar el HTML de las tarjetas
             grid.innerHTML = pagActual.map(p => `
                 <div class="pelicula ${p.disponible ? '' : 'proximamente'}" data-id="${p.id}">
                     <img src="${p.imagen}" alt="${p.titulo}">
@@ -664,85 +699,115 @@
                 </div>
             `).join('');
 
+            // ===== ASIGNAR EVENTOS CLICK A LAS PELÍCULAS DISPONIBLES =====
+            // Selecciona todas las películas que NO tienen la clase 'proximamente'
             document.querySelectorAll('.pelicula:not(.proximamente)').forEach(el => {
                 el.addEventListener('click', () => {
-                    const id = el.dataset.id;
-                    const peli = peliculas.find(p => p.id == id);
-                    if (peli?.disponible) abrirModalSecuencias(p);
+                    const id = el.dataset.id;  // Obtiene el ID de la película
+                    const peli = peliculas.find(p => p.id == id); // Busca la película en la base de datos
+                    if (peli?.disponible) abrirModalSecuencias(peli); // Si está disponible, abre el modal
                 });
             });
 
+            // ===== ACTUALIZAR PAGINACIÓN =====
             const total = Math.ceil(filtradas.length / porPagina);
             document.getElementById('pageIndicator').textContent = `${pagina}/${total}`;
-            document.getElementById('prevPage').disabled = pagina === 1;
-            document.getElementById('nextPage').disabled = pagina === total;
-            
-     function abrirModalSecuencias(peli) {
-        let html = `<h2>${peli.titulo}</h2>`;
-        // Lista de secuencias disponibles (las que has subido)
-        const disponibles = [1, 2];  // ← Aquí agregas más cuando subas
-    
-        for (let i = 0; i < disponibles.length; i++) {
-        let num = disponibles[i];
-        html += `
-            <div class="secuencia-item">
-                <span>Secuencia ${num}</span>
-                <div>
-                    <a href="el-padrino/secuencia${num}.html" target="_blank">📖 HTML</a>
-                    <a href="el-padrino/secuencia${num}.pdf" target="_blank">📥 PDF</a>
-                </div>
-            </div>
-        `;
-    }
-    
-    html += '<div class="cerrar-modal" onclick="document.getElementById(\'modalSecuencias\').classList.remove(\'activo\')">✕ Cerrar</div>';
-    modalSecContenido.innerHTML = html;
-    modalSec.classList.add('activo');
-}
+            document.getElementById('prevPage').disabled = pagina === 1; // Deshabilitar si es primera página
+            document.getElementById('nextPage').disabled = pagina === total; // Deshabilitar si es última página
         }
 
-   
+        // ===== FUNCIÓN PARA ABRIR MODAL DE SECUENCIAS =====
+        // Recibe un objeto 'peli' con la información de la película
+        function abrirModalSecuencias(peli) {
+            let html = `<h2>${peli.titulo}</h2>`; // Título de la película
+            
+            // Lista de secuencias disponibles (las que ya has subido)
+            // Cuando subas la secuencia 3, agrega el número 3 a esta lista
+            const disponibles = [1, 2];  // ← Solo muestra secuencias 1 y 2 por ahora
+            
+            // Bucle for que recorre la lista de disponibles
+            for (let i = 0; i < disponibles.length; i++) {
+                let num = disponibles[i]; // Número de la secuencia actual (1, 2, etc.)
+                
+                // Por cada secuencia, crea un item con enlaces a HTML y PDF
+                html += `
+                    <div class="secuencia-item">
+                        <span>Secuencia ${num}</span>
+                        <div>
+                            <a href="${peli.carpeta}/secuencia${num}.html" target="_blank">📖 HTML</a>
+                            <a href="${peli.carpeta}/secuencia${num}.pdf" target="_blank">📥 PDF</a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Botón para cerrar el modal
+            html += '<div class="cerrar-modal" onclick="document.getElementById(\'modalSecuencias\').classList.remove(\'activo\')">✕ Cerrar</div>';
+            
+            // Insertar el HTML en el modal y mostrarlo
+            modalSecContenido.innerHTML = html;
+            modalSec.classList.add('activo');
+        }
 
- function abrirModalPagos() {
+        // ===== FUNCIÓN PARA ABRIR MODAL DE PAGOS =====
+        function abrirModalPagos() {
             document.getElementById('modalPagos').classList.add('activo');
         }
 
+        // ===== EVENTO DEL BUSCADOR =====
+        // Se ejecuta cada vez que el usuario escribe en el campo de búsqueda
         buscarInput.addEventListener('input', (e) => {
-            const texto = e.target.value.toLowerCase();
+            const texto = e.target.value.toLowerCase(); // Texto en minúsculas
+            // Filtrar películas cuyo título contenga el texto
             filtradas = peliculas.filter(p => p.titulo.toLowerCase().includes(texto));
-            pagina = 1;
-            mostrarPagina();
+            pagina = 1; // Volver a la primera página
+            mostrarPagina(); // Actualizar la cuadrícula
         });
 
+        // ===== BOTÓN RESET =====
+        // Vuelve a mostrar todas las películas
         resetBtn.addEventListener('click', () => {
-            buscarInput.value = '';
-            filtradas = peliculas;
+            buscarInput.value = '';      // Limpiar campo de búsqueda
+            filtradas = peliculas;        // Restaurar todas las películas
             pagina = 1;
             mostrarPagina();
         });
 
+        // ===== PAGINACIÓN =====
+        // Botón "Anterior"
         document.getElementById('prevPage').addEventListener('click', () => {
-            if (pagina > 1) { pagina--; mostrarPagina(); }
+            if (pagina > 1) { 
+                pagina--; 
+                mostrarPagina(); 
+            }
         });
 
+        // Botón "Siguiente"
         document.getElementById('nextPage').addEventListener('click', () => {
             const total = Math.ceil(filtradas.length / porPagina);
-            if (pagina < total) { pagina++; mostrarPagina(); }
+            if (pagina < total) { 
+                pagina++; 
+                mostrarPagina(); 
+            }
         });
 
+        // ===== CERRAR MODAL DE SECUENCIAS =====
+        // Si se hace clic fuera del contenido del modal, se cierra
         modalSec.addEventListener('click', (e) => {
             if (e.target === modalSec) modalSec.classList.remove('activo');
         });
 
+        // ===== BOTÓN CAFÉ =====
         document.getElementById('btnCafe').addEventListener('click', abrirModalPagos);
 
+        // ===== CERRAR MODAL DE PAGOS =====
         const modalPagos = document.getElementById('modalPagos');
         const cerrarPagos = document.getElementById('cerrarModalPagos');
-
+        
         cerrarPagos.addEventListener('click', () => {
             modalPagos.classList.remove('activo');
         });
-
+        
         modalPagos.addEventListener('click', (e) => {
             if (e.target === modalPagos) modalPagos.classList.remove('activo');
         });
@@ -755,26 +820,19 @@
 
         function abrirFooter() {
             footerDesplegable.classList.add('activo');
-            body.classList.add('footer-activo');
+            body.classList.add('footer-activo'); // Activar blur en el contenido
         }
 
         function cerrarFooter() {
             footerDesplegable.classList.remove('activo');
-            body.classList.remove('footer-activo');
+            body.classList.remove('footer-activo'); // Quitar blur
         }
 
         footerTrigger.addEventListener('click', abrirFooter);
         footerCerrar.addEventListener('click', cerrarFooter);
 
-        mostrarPagina();
+        // ===== INICIALIZAR =====
+        mostrarPagina(); // Mostrar la primera página al cargar
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
