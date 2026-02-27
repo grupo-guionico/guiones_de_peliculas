@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Padrino - GRUPO GUIONICO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* BLUR CUANDO MODAL ABIERTO */
+        body.modal-abierto .layout-principal {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* ===== LAYOUT CON IMAGOTIPO IZQUIERDA ===== */
+        .layout-principal {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: 1fr auto;
+            gap: 40px;
+            min-height: 100vh;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        /* ===== IMAGOTIPO IZQUIERDA CON PALPITACIÓN ===== */
+        .imagotipo {
+            grid-column: 1;
+            grid-row: 1;
+            position: sticky;
+            top: 40px;
+            width: clamp(120px, 15vw, 200px);
+            z-index: 100;
+            cursor: pointer;
+            animation: palpitar 3s ease-in-out infinite;
+            align-self: start;
+        }
+
+        @keyframes palpitar {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                filter: brightness(1) drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.03);
+                filter: brightness(1.15) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+            }
+        }
+
+        .imagotipo:hover {
+            animation-play-state: paused;
+            filter: brightness(1.4) drop-shadow(0 0 25px rgb(255, 255, 0));
+            transform: scale(1.08);
+        }
+
+        .imagotipo img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(202, 202, 191, 0.5));
+            display: block;
+        }
+
+        /* ===== CONTENEDOR CENTRAL ===== */
+        .contenedor-principal {
+            grid-column: 2;
+            grid-row: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* ===== IMAGEN DE FONDO ===== */
+        .imagen-fondo {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .imagen-fondo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== FOOTER SIN BOTÓN ===== */
+        .footer {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 1.rem;
+            color: #666;
+            letter-spacing: 2px;
+            border-top: 1px solid transparent;
+            border-image: linear-gradient(90deg, transparent, rgb(63, 62, 59), transparent) 1;
+        }
+
+        .footer span {
+            color: rgb(105, 105, 100);
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 12px;
+            letter-spacing: 3px;
+        }
+
+        /* ===== MODALES ===== */
+        .modal-secuencias,
+        .modal-pagos {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-secuencias.mostrar,
+        .modal-pagos.mostrar {
+            display: flex;
+        }
+
+        .modal-contenido {
+            background: #111;
+            border: 2px solid gold;
+            border-radius: 24px;
+            padding: 35px;
+            width: min(420px, 95%);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+        }
+
+        .modal-contenido h2 {
+            color: gold;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .lista-secuencias-modal {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .secuencia-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .secuencia-item.activo:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: gold;
+            transform: translateX(8px);
+        }
+
+        .secuencia-item.opaco {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .secuencia-item span {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .links a {
+            background: gold;
+            color: black;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .links span {
+            background: #222;
+            color: #555;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== BOTÓN CAFÉ DENTRO DEL MODAL ===== */
+        .boton-cafe-modal {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .btn-invitar {
+            width: 100%;
+            background: transparent;
+            border: 2px solid gold;
+            color: gold;
+            padding: 16px 24px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-invitar:hover {
+            background: gold;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-invitar small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 6px;
+            font-weight: normal;
+        }
+
+        .cerrar-modal {
+            background: gold;
+            color: black;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 10px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s;
+        }
+
+        .cerrar-modal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .modal-pagos a {
+            display: block;
+            color: gold;
+            text-decoration: none;
+            padding: 18px;
+            margin: 12px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .modal-pagos a:hover {
+            background: gold;
+            color: black;
+            transform: translateX(10px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .layout-principal {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+                gap: 30px;
+                padding: 25px;
+            }
+
+            .imagotipo {
+                position: relative;
+                top: 0;
+                grid-column: 1;
+                grid-row: 1;
+                width: 150px;
+                margin: 0 auto;
+            }
+
+            .contenedor-principal {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .footer {
+                padding: 35px 15px;
+                font-size: 1.1rem;
+            }
+
+            .footer span {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .layout-principal {
+                padding: 20px;
+                gap: 25px;
+            }
+
+            .imagotipo {
+                width: 130px;
+            }
+
+            .imagen-fondo {
+                border-radius: 16px;
+            }
+
+            .footer {
+                font-size: 1rem;
+                padding: 30px 10px;
+            }
+
+            .modal-contenido {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUDIOS -->
+    <audio id="sonidoHover" preload="auto"></audio>
+    <audio id="sonidoClick" preload="auto"></audio>
+
+    <div class="layout-principal">
+        <!-- IMAGOTIPO IZQUIERDA CON PALPITACIÓN -->
+        <div class="imagotipo" id="imagotipo">
+            <img src="imagenes/el-padrino-imagotipo.png" alt="GRUPO GUIONICO">
+        </div>
+
+        <!-- CONTENIDO CENTRAL (SIN BOTÓN) -->
+        <div class="contenedor-principal">
+            <div class="imagen-fondo">
+                <img src="imagenes/el-padrino-fondo.png" alt="El Padrino">
+            </div>
+        </div>
+
+        <!-- FOOTER SIN BOTÓN -->
+        <div class="footer">
+            <span>🎬 GRUPO GUIONICO</span>
+        Este material se presenta exclusivamente con fines de estudio, análisis y conservación cultural.
+        El guion original y todos los derechos relacionados pertenecen a Paramount Pictures.
+        No se reclama propiedad sobre el contenido original ni se persigue ningún fin comercial con su publicación.
+        </div>
+    </div>
+
+    <!-- MODAL SECUENCIAS CON BOTÓN CAFÉ DENTRO -->
+    <div class="modal-secuencias" id="modalSecuencias">
+        <div class="modal-contenido">
+            <h2>SECUENCIAS</h2>
+            <div class="lista-secuencias-modal">
+                <div class="secuencia-item activo"><span>SECUENCIA 1</span>
+                    <div class="links"><a href="el-padrino/secuencia1.html">📖</a><a
+                            href="el-padrino/secuencia1.pdf">📥</a></div>
+                </div>
+                <div class="secuencia-item activo"><span>SECUENCIA 2</span>
+                    <div class="links"><a href="el-padrino/secuencia2.html">📖</a><a
+                            href="el-padrino/secuencia2.pdf">📥</a></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 3</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 4</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 5</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 6</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 7</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 8</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+            </div>
+
+            <!-- BOTÓN CAFÉ DENTRO DEL MODAL -->
+            <div class="boton-cafe-modal">
+                <button class="btn-invitar" id="btnCafe">
+                    ☕ INVÍTAME UN CAFÉ
+                    <small>si esto te ha servido</small>
+                </button>
+            </div>
+
+            <button class="cerrar-modal" id="cerrarSecuencias">CERRAR</button>
+        </div>
+    </div>
+
+    <!-- MODAL PAGOS -->
+    <div class="modal-pagos" id="modalPagos">
+        <div class="modal-contenido">
+            <h2>☕ APOYA EL PROYECTO</h2>
+            <a href="#" target="_blank">🔵 PayPal</a>
+            <a href="#" target="_blank">🟢 Nequi</a>
+            <a href="#" target="_blank">🔴 Daviplata</a>
+            <button class="cerrar-modal" id="cerrarPagos">CERRAR</button>
+        </div>
+    </div>
+
+    <script>
+        const body = document.body;
+        const imagotipo = document.getElementById('imagotipo');
+        const modalSec = document.getElementById('modalSecuencias');
+        const modalPagos = document.getElementById('modalPagos');
+        const cerrarSec = document.getElementById('cerrarSecuencias');
+        const cerrarPagos = document.getElementById('cerrarPagos');
+        const btnCafe = document.getElementById('btnCafe');
+        const sonidoHover = document.getElementById('sonidoHover');
+        const sonidoClick = document.getElementById('sonidoClick');
+
+        const sonidos = [
+            'https://www.sounddino.com/mp3/click-button.mp3',
+            'https://www.sounddino.com/mp3/switch-button.mp3',
+            'https://www.sounddino.com/mp3/electronic-click.mp3',
+            'https://www.sounddino.com/mp3/cartoon-click.mp3'
+        ];
+
+        let ultimoHover = 0;
+        const cooldownHover = 600;
+
+        function reproducirSonido(audioElement, cooldownTime = 0, lastTimeVar = 0) {
+            const ahora = Date.now();
+            if (cooldownTime > 0 && ahora - lastTimeVar < cooldownTime) return false;
+
+            const random = Math.floor(Math.random() * sonidos.length);
+            audioElement.src = sonidos[random];
+            audioElement.currentTime = 0;
+            audioElement.play().catch(e => console.log('Audio error:', e));
+
+            return ahora;
+        }
+
+        imagotipo.addEventListener('mouseenter', () => {
+            const tiempo = reproducirSonido(sonidoHover, cooldownHover, ultimoHover);
+            if (tiempo) ultimoHover = tiempo;
+        });
+
+        imagotipo.addEventListener('click', () => {
+            reproducirSonido(sonidoClick, 0, 0);
+            modalSec.classList.add('mostrar');
+            body.classList.add('modal-abierto');
+        });
+
+        // CLICK EN BOTÓN CAFÉ DENTRO DEL MODAL
+        btnCafe.addEventListener('click', () => {
+            modalPagos.classList.add('mostrar');
+            // No quitamos modalSec, se superponen o cierras el de secuencias primero
+        });
+
+        function cerrarModales() {
+            modalSec.classList.remove('mostrar');
+            modalPagos.classList.remove('mostrar');
+            body.classList.remove('modal-abierto');
+        }
+
+        cerrarSec.addEventListener('click', () => {
+            modalSec.classList.remove('mostrar');
+            if (!modalPagos.classList.contains('mostrar')) {
+                body.classList.remove('modal-abierto');
+            }
+        });
+
+        cerrarPagos.addEventListener('click', () => {
+            modalPagos.classList.remove('mostrar');
+            body.classList.remove('modal-abierto');
+        });
+
+        modalSec.addEventListener('click', (e) => {
+            if (e.target === modalSec) {
+                modalSec.classList.remove('mostrar');
+                if (!modalPagos.classList.contains('mostrar')) {
+                    body.classList.remove('modal-abierto');
+                }
+            }
+        });
+
+        modalPagos.addEventListener('click', (e) => {
+            if (e.target === modalPagos) {
+                modalPagos.classList.remove('mostrar');
+                body.classList.remove('modal-abierto');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarModales();
+        });
+    </script>
+</body>
+
+</html>
