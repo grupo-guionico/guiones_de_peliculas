@@ -39,6 +39,16 @@
     margin: 0 auto;
     align-items: start;
 }
+        @media (max-width: 768px) {
+    .layout-principal {
+        min-height: auto; /* Quita el forzado de altura */
+        height: auto;
+    }
+    
+    body {
+        overflow-y: scroll; /* Fuerza scroll siempre */
+    }
+}
 
         /* ===== IMAGOTIPO IZQUIERDA CON PALPITACIÓN ===== */
         .imagotipo {
@@ -543,5 +553,6 @@
 
 
 </html>
+
 
 
