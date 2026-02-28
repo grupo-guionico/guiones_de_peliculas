@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Padrino - GRUPO GUIONICO</title>
     <style>
+        /* ===== VARIABLES DE CONTROL ===== */
+        :root {
+            /* CONTROLES DEL IMAGOTIPO - AJUSTA ESTOS VALORES */
+            --logo-top: 30%;
+            /* Distancia desde arriba (0-100%) */
+            --logo-left: 30%;
+            /* Desde la izquierda (0-100%) */
+            --logo-size: clamp(120px, 15vw, 200px);
+
+            /* COLORES */
+            --gold: #5f5f5f;
+            --gold-bright: #ffd700;
+            --bg: #000;
+            --surface: rgba(255, 255, 255, 0.03);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,61 +29,64 @@
         }
 
         body {
-            background-color: #000;
+            background-color: var(--bg);
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* BLUR CUANDO MODAL ABIERTO */
         body.modal-abierto .layout-principal {
-            filter: blur(5px);
+            filter: blur(8px);
             transition: filter 0.3s ease;
             pointer-events: none;
         }
 
-        /* ===== LAYOUT GENERAL ===== */
+        /* ===== LAYOUT ===== */
         .layout-principal {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-template-rows: 1fr auto;
-            gap: 40px;
+            position: relative;
             min-height: 100vh;
             min-height: 100dvh;
             padding: 40px;
             max-width: 1400px;
             margin: 0 auto;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ===== IMAGOTIPO CON PALPITACIÓN ===== */
         .imagotipo {
-            grid-column: 1;
-            grid-row: 1;
-            position: sticky;
-            top: 40px;
-            width: clamp(120px, 15vw, 200px);
+            position: fixed;
+            top: var(--logo-top);
+            left: var(--logo-left);
+            transform: translate(-50%, -50%);
+            width: var(--logo-size);
             z-index: 100;
             cursor: pointer;
             animation: palpitar 3s ease-in-out infinite;
-            align-self: start;
         }
 
         @keyframes palpitar {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-                filter: brightness(1) drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                filter: brightness(1) drop-shadow(0 0 5px rgba(201, 162, 39, 0.3));
             }
+
             50% {
-                transform: translateY(-10px) scale(1.03);
-                filter: brightness(1.15) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+                transform: translate(-50%, -55%) scale(1.03);
+                filter: brightness(1.2) drop-shadow(0 0 25px rgba(201, 162, 39, 0.8));
             }
         }
 
         .imagotipo:hover {
             animation-play-state: paused;
-            filter: brightness(1.4) drop-shadow(0 0 25px rgb(255, 255, 0));
-            transform: scale(1.08);
+            filter: brightness(1.4) drop-shadow(0 0 30px var(--gold-bright));
+            transform: translate(-50%, -50%) scale(1.08);
         }
 
         .imagotipo img {
@@ -78,22 +98,23 @@
 
         /* ===== CONTENEDOR CENTRAL ===== */
         .contenedor-principal {
-            grid-column: 2;
-            grid-row: 1;
             width: 100%;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 30px;
+            margin-left: 15%;
+            /* Espacio para el logo a la izquierda */
         }
 
         /* ===== IMAGEN DE FONDO ===== */
         .imagen-fondo {
             position: relative;
             width: 100%;
-            max-width: 800px;
             border-radius: 24px;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
         }
 
         .imagen-fondo img {
@@ -102,26 +123,46 @@
             display: block;
         }
 
-        /* ===== FOOTER GENERAL ===== */
-          .footer {
-            grid-column: 1 / -1;
-            grid-row: 2;
-            text-align: center;
-            padding: 50px 20px;
-            font-size: 0.8.rem;
-            color: #666;
-            letter-spacing: 2px;
-            border-top: 1px solid transparent;
-            border-image: linear-gradient(90deg, transparent, rgb(63, 62, 59), transparent) 1;
+        /* ===== FOOTER GLASSMORPHISM ===== */
+        .footer {
+           
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(202, 165, 44, 0.15);
+            padding: 30px 60px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 40px;
+            z-index: 50;
         }
 
-        .footer span {
-            color: rgb(105, 105, 100);
-            font-weight: bold;
-            font-size: .5rem;
+        .footer-brand {
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .footer-legal {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #555;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-legal strong {
+            color: #777;
             display: block;
-            margin-bottom: 12px;
-            letter-spacing: 3px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
 
         /* ===== MODALES ===== */
@@ -133,8 +174,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -147,29 +188,29 @@
         }
 
         .modal-contenido {
-            background: #111;
-            border: 2px solid gold;
+            background: rgba(17, 17, 17, 0.95);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             border-radius: 24px;
-            padding: 35px;
-            width: min(420px, 95%);
-            max-height: 90vh;
+            padding: 40px;
+            width: min(450px, 95%);
+            max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 80px rgba(201, 162, 39, 0.15);
         }
 
         .modal-contenido h2 {
-            color: gold;
+            color: var(--gold);
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-size: 1.6rem;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .lista-secuencias-modal {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 25px;
         }
 
@@ -177,102 +218,104 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            border-radius: 12px;
             padding: 14px 18px;
             transition: all 0.3s ease;
         }
 
         .secuencia-item.activo:hover {
-            background: rgba(255, 215, 0, 0.1);
-            border-color: gold;
-            transform: translateX(8px);
+            background: rgba(201, 162, 39, 0.1);
+            border-color: var(--gold);
+            transform: translateX(5px);
         }
 
         .secuencia-item.opaco {
-            opacity: 0.3;
+            opacity: 0.25;
             pointer-events: none;
         }
 
         .secuencia-item span {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
+            color: #ddd;
         }
 
         .links {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .links a {
-            background: gold;
-            color: black;
-            padding: 8px 14px;
+            background: var(--gold);
+            color: #000;
+            padding: 6px 12px;
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             transition: all 0.2s;
         }
 
         .links a:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
         }
 
         .links span {
             background: #222;
-            color: #555;
-            padding: 8px 14px;
+            color: #444;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* ===== BOTÓN CAFÉ EN MODAL ===== */
+        /* ===== BOTÓN CAFÉ ===== */
         .boton-cafe-modal {
             margin: 25px 0;
-            text-align: center;
         }
 
         .btn-invitar {
             width: 100%;
             background: transparent;
-            border: 2px solid gold;
-            color: gold;
+            border: 1px solid var(--gold);
+            color: var(--gold);
             padding: 16px 24px;
-            border-radius: 60px;
-            font-weight: bold;
-            font-size: 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
         }
 
         .btn-invitar:hover {
-            background: gold;
-            color: black;
+            background: var(--gold);
+            color: #000;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.2);
         }
 
         .btn-invitar small {
             display: block;
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.75rem;
+            opacity: 0.7;
             margin-top: 6px;
             font-weight: normal;
+            letter-spacing: 0.5px;
         }
 
         .cerrar-modal {
-            background: gold;
-            color: black;
+            background: var(--gold);
+            color: #000;
             border: none;
             padding: 14px 40px;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 20px;
             cursor: pointer;
             display: block;
             margin-left: auto;
@@ -282,114 +325,77 @@
 
         .cerrar-modal:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
         }
 
         .modal-pagos a {
             display: block;
-            color: gold;
+            color: var(--gold);
             text-decoration: none;
-            padding: 18px;
-            margin: 12px 0;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 16px;
+            margin: 10px 0;
+            border: 1px solid rgba(201, 162, 39, 0.3);
             border-radius: 12px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s;
         }
 
         .modal-pagos a:hover {
-            background: gold;
-            color: black;
-            transform: translateX(10px);
+            background: var(--gold);
+            color: #000;
+            transform: translateX(5px);
         }
 
-        /* ===== RESPONSIVE MÓVILES ===== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                min-height: 100vh;
-                min-height: 100dvh;
-            }
-
             .layout-principal {
-                display: flex;
-                flex-direction: column;
-                min-height: 100dvh;
                 padding: 20px;
-                gap: 15px;
-            }
-
-            /* IMAGOTIPO CENTRADO CON PALPITACIÓN */
-            .imagotipo {
-                position: relative;
-                top: 0;
-                width: 120px;
-                margin: 0 auto;
-                align-self: center;
-                /* La animación palpitar sigue activa */
+                padding-bottom: 100px;
+                /* Espacio para footer fijo */
             }
 
             .contenedor-principal {
+                margin-left: 0;
+                /* Sin margen en móvil */
                 width: 100%;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 20px;
             }
 
-            .imagen-fondo {
-                width: 100%;
-                max-width: 100%;
+            /* IMAGOTIPO MÁS CENTRADO EN MÓVIL */
+            .imagotipo {
+                --logo-top: 35.8%;
+                --logo-left: 20%;
+                --logo-size: 100px;
             }
 
-            .imagen-fondo img {
-                width: 100%;
-                height: auto;
-                max-height: 60vh;
-                object-fit: contain;
-            }
-
-            /* FOOTER CON LETRA PEQUEÑA SOLO EN MÓVILES */
             .footer {
-                padding: 25px 15px;
-                font-size: 0.3rem; /* Letra más pequeña */
-                flex-shrink: 0;
-                margin-top: auto;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px;
+                text-align: center;
             }
 
-            .footer span {
-                font-size: 1.1rem; /* Nombre más pequeño */
-                margin-bottom: 8px;
+            .footer-brand {
+                font-size: 0.5rem;
+            }
+
+            .footer-legal {
+                font-size: 0.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            .layout-principal {
-                padding: 15px;
-                gap: 10px;
-            }
-
             .imagotipo {
-                width: 100px;
+                --logo-size: 80px;
             }
 
-            .imagen-fondo img {
-                max-height: 55vh;
-            }
-
-            .footer {
-                font-size: 0.85rem; /* Aún más pequeño en móviles pequeños */
-                padding: 20px 10px;
-            }
-
-            .footer span {
-                font-size: 1rem;
+            .modal-contenido {
+                padding: 25px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- AUDIOS -->
     <audio id="sonidoHover" preload="auto"></audio>
@@ -401,36 +407,62 @@
             <img src="imagenes/el-padrino-imagotipo.png" alt="GRUPO GUIONICO">
         </div>
 
-        <!-- CONTENIDO -->
+        <!-- CONTENIDO CENTRAL -->
         <div class="contenedor-principal">
             <div class="imagen-fondo">
                 <img src="imagenes/el-padrino-fondo.png" alt="El Padrino">
             </div>
         </div>
+    </div>
 
-        <!-- FOOTER -->
-      
-        <!-- FOOTER SIN BOTÓN -->
-        <div class="footer">
-            <span>GRUPO GUIONICO</span>
-           <span>  Este material se presenta exclusivamente con fines de estudio, análisis y conservación cultural.
+    <!-- FOOTER GLASSMORPHISM -->
+    <div class="footer">
+        <div class="footer-brand">GRUPO GUIONICO</div>
+        <div class="footer-legal">
+            <strong>AVISO LEGAL</strong>
+            Este material se presenta exclusivamente con fines de estudio, análisis y conservación cultural.
             El guion original y todos los derechos relacionados pertenecen a Paramount Pictures.
-            </span>
+            No se reclama propiedad sobre el contenido original ni se persigue ningún fin comercial.
         </div>
     </div>
+
     <!-- MODAL SECUENCIAS -->
     <div class="modal-secuencias" id="modalSecuencias">
         <div class="modal-contenido">
             <h2>SECUENCIAS</h2>
             <div class="lista-secuencias-modal">
-                <div class="secuencia-item activo"><span>SECUENCIA 1</span><div class="links"><a href="el-padrino/secuencia1.html">📖</a><a href="el-padrino/secuencia1.pdf">📥</a></div></div>
-                <div class="secuencia-item activo"><span>SECUENCIA 2</span><div class="links"><a href="el-padrino/secuencia2.html">📖</a><a href="el-padrino/secuencia2.pdf">📥</a></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 3</span><div class="links"><span>📖</span><span>📥</span></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 4</span><div class="links"><span>📖</span><span>📥</span></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 5</span><div class="links"><span>📖</span><span>📥</span></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 6</span><div class="links"><span>📖</span><span>📥</span></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 7</span><div class="links"><span>📖</span><span>📥</span></div></div>
-                <div class="secuencia-item opaco"><span>SECUENCIA 8</span><div class="links"><span>📖</span><span>📥</span></div></div>
+                <div class="secuencia-item activo">
+                    <span>SECUENCIA 1</span>
+                    <div class="links">
+                        <a href="el-padrino/secuencia1.html">📖</a>
+                        <a href="el-padrino/secuencia1.pdf">📥</a>
+                    </div>
+                </div>
+                <div class="secuencia-item activo">
+                    <span>SECUENCIA 2</span>
+                    <div class="links">
+                        <a href="el-padrino/secuencia2.html">📖</a>
+                        <a href="el-padrino/secuencia2.pdf">📥</a>
+                    </div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 3</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 4</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 5</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 6</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 7</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
+                <div class="secuencia-item opaco"><span>SECUENCIA 8</span>
+                    <div class="links"><span>📖</span><span>📥</span></div>
+                </div>
             </div>
 
             <div class="boton-cafe-modal">
@@ -473,36 +505,40 @@
             'https://www.sounddino.com/mp3/cartoon-click.mp3'
         ];
 
-        let ultimoHover = 0;
-        const cooldownHover = 600;
+        // COOLDOWN ANTI-SPAM
+        let ultimoSonido = 0;
+        const COOLDOWN = 800; // milisegundos
 
-        function reproducirSonido(audioElement, cooldownTime = 0, lastTimeVar = 0) {
+        function reproducirSonido(audioElement) {
             const ahora = Date.now();
-            if (cooldownTime > 0 && ahora - lastTimeVar < cooldownTime) return false;
-            
+            if (ahora - ultimoSonido < COOLDOWN) return;
+
             const random = Math.floor(Math.random() * sonidos.length);
             audioElement.src = sonidos[random];
             audioElement.currentTime = 0;
             audioElement.play().catch(e => console.log('Audio error:', e));
-            
-            return ahora;
+
+            ultimoSonido = ahora;
         }
 
+        // HOVER - SONIDO
         imagotipo.addEventListener('mouseenter', () => {
-            const tiempo = reproducirSonido(sonidoHover, cooldownHover, ultimoHover);
-            if (tiempo) ultimoHover = tiempo;
+            reproducirSonido(sonidoHover);
         });
 
+        // CLICK - ABRIR MODAL + SONIDO
         imagotipo.addEventListener('click', () => {
-            reproducirSonido(sonidoClick, 0, 0);
+            reproducirSonido(sonidoClick);
             modalSec.classList.add('mostrar');
             body.classList.add('modal-abierto');
         });
 
+        // BOTÓN CAFÉ
         btnCafe.addEventListener('click', () => {
             modalPagos.classList.add('mostrar');
         });
 
+        // CERRAR MODALES
         function cerrarModales() {
             modalSec.classList.remove('mostrar');
             modalPagos.classList.remove('mostrar');
@@ -521,12 +557,11 @@
             body.classList.remove('modal-abierto');
         });
 
+        // CERRAR AL HACER CLICK FUERA
         modalSec.addEventListener('click', (e) => {
             if (e.target === modalSec) {
                 modalSec.classList.remove('mostrar');
-                if (!modalPagos.classList.contains('mostrar')) {
-                    body.classList.remove('modal-abierto');
-                }
+                body.classList.remove('modal-abierto');
             }
         });
 
@@ -537,14 +572,11 @@
             }
         });
 
+        // CERRAR CON ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') cerrarModales();
         });
     </script>
 </body>
+
 </html>
-
-
-
-
-
