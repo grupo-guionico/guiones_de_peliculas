@@ -1,0 +1,260 @@
+{
+  "movies": [
+
+
+
+
+
+    {
+      "id": "godfather",
+      "title": "EL PADRINO",
+      "year": "1972 · CRIME",
+      "poster": "../assets/img/el-padrino-poster.png",
+      "status": "active",
+      "meta": {
+        "director": "Francis Ford Coppola",
+        "guion": "Mario Puzo, F.F. Coppola",
+        "foto": "Gordon Willis",
+        "musica": "Nino Rota",
+        "duracion": "175 min"
+      },
+      "sequences": [
+        {
+          "name": "01 MUNDO CORLEONE",
+          "url": "https://archive.org/embed/sec-1-el-padrino-el-don-arrodilla-a-bonasera-para-archive",
+          "title": "Secuencia 01: EL MUNDO CORLEONE -La Boda - El Poder de Don Corleone",
+          "text1": "La película abre con el imponente primer plano de Bonasera pidiendo justicia en la oficina oscura de Don Vito. El uso expresivo del claroscuro por Gordon Willis establece inmediatamente las pautas formales de la mafia: poder en la sombra versus la luminosidad exterior de la boda.",
+          "text2": "Esta secuencia introductoria establece el tono moral ambiguo de la película. Mientras afuera se celebra una boda italiana tradicional, adentro se negocia justicia fuera de la ley. El contraste entre luz y oscuridad no es solo estético, es temático."
+        },
+        {
+          "name": "02 EL ATENTADO",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 02: INCIDENTE INCITADOR Y PRIMER PUNTO DE GIRO- El no a Sollozo, El atentado al DON",
+          "text1": "Esta secuencia es el motor narrativo que rompe el equilibrio del primer acto. Aquí, el negocio de los narcóticos propuesto por Sollozzo funciona como el beat de confrontación necesario para forzar la evolución de la familia.",
+          "text2": "El punto de giro:<br> El rechazo de Vito Corleone a la oferta de Sollozzo es el beat determinante que desencadena la fractura interna y, finalmente, el atentado.<br>La expansión geográfica y de tono: El viaje de Tom Hagen a Los Ángeles actúa como un contraste técnico vital. El ritmo se vuelve más frenético y el tono cromático cambia drásticamente, lejándonos del entorno denso y sombrío de Nueva York hacia la 'inmunidad' aparente del poder legítimo de Jack Woltz.<br>El peso del subtexto:<br> La secuencia de Woltz —incluyendo la escena de la cama y la visita eliminada a Genco en el hospital— funciona como un beat de advertencia: el poder de los Corleone trasciende fronteras legales.Análisis técnico: Observa cómo Puzo utiliza este contraste para demostrar la vulnerabilidad de todos: mientras Woltz descubre que no es intocable, nosotros descubrimos que, a pesar de su poder, los Corleone también pueden ser alcanzados. Es un beat de doble vía que equilibra la balanza del poder antes de entrarde lleno en el segundo acto.."
+        },
+        {
+          "name": "03 LUCA MUERE",
+          "url": "https://archive.org/embed/secuencia-3-585mb",
+          "title": "Secuencia 03: – Aumento de las apuestas - El asesinato de LUCA BRASI",
+          "text1": "La estructura del segundo acto exige una escalada constante de la tensión. En esta secuencia, el conflicto central no es solo el atentado contra Vito Corleone, sino la crisis de mando que se genera tras su caída.<br>La escalada de tensión: La situación llega a un punto crítico cuando se confirma la muerte de su mayor ejecutor. Es un beat de información que altera las reglas del juego y fuerza a la familia a una vulnerabilidad que no pueden permitirse.Análisis técnico: Como ejercicio de ritmo en este punto del segundo acto, observa cómo Puzo y Coppola utilizan la impaciencia de Sonny para acelerar la tragedia. Aquí el guionista debe notar cómo un rasgo de personalidad ('fuerza bruta') se utiliza como el motor que arrastra a todos los personajes hacia el desastre inminente...",
+          "text2": "El beat de carácter: <BR>Mientras la familia se tambalea, Sonny toma el control, dejando al descubierto que su temperamento impulsivo —donde la fuerza siempre está por encima de la inteligencia— se convierte en el mayor obstáculo para la supervivencia de los Corleone.<br>"
+        },
+        {
+          "name": "04 MICHAEL ASESINA",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 04: PUNTO MEDIO e INCIDENTE INCITADOR : El capitán golpea a Michael Y michael decide asesinar",
+          "text1": "Esta es la secuencia donde Michael Corleone deja de ser un observador para convertirse en el protagonista del conflicto. Es el punto medio donde su transformación interna se hace tangible ante nuestros ojos. <BR>Michael se reúne con Sollozzo y el capitán McCluskey en el pequeño restaurante italiano. El diseño sonoro se convierte en el motor de la tensión mediante el ruido estridente del tren elevado, reflejando el caos psicológico antes del disparo.",
+          "text2": "El beat de despertar:<br> Michael visita a su padre en el hospital y, al defenderlo de un segundo atentado, activa todo lo aprendido en la guerra. Aquí reside un beat de carácter fundamental: su mano no tiembla. Michael descubre su propia frialdad, una capacidad de ejecución que ni él mismo conocía.El incidente incitador: El enfrentamiento con el Capitán McCluskey no es solo una pelea; es el beat que cierra la puerta a su vida legítima. El golpe del capitán es el catalizador psicológico: el coraje nacido del amor por su padre se transmuta en la decisión irreversible de matar.Análisis técnico (Visual): Mientras el guion marca la urgencia, Gordon Willis eleva la tensión en el mercado mediante el uso de cámara en movimiento, lo cual enfatiza la vulnerabilidad de Vito. Es vital notar cómo el uso simbólico de las naranjas —compradas instantes antes— se convierte en un leitmotiv visual de muerte que estructura la narrativa a lo largo de toda la saga.."
+        },
+        {
+          "name": "05 SONNY",
+          "url": "https://archive.org/embed/2-versioncompletasecuencia-5-padrino-1",
+          "title": "Secuencia 05:<br> SUBTRAMA Y PRIMERA CULMINACIÓN: Sonny cae en la trampa - ",
+          "text1": "Sonny Corleone cae en la trampa más brutal de la saga. Carlo lo sabe: solo tiene que despertar los celos de Sonny por su hermana Connie. La llamda de LA mujer a CONNI, La llamada de Connie llorando, la golpiza de Sonny a Carlo, el asesinato en el peaje... la trampa está cerrada.",
+          "text2": "- El beat de manipulación: La trampa no es el tiroteo en el peaje; la trampa comienza mucho antes con la orquestación de Carlo. Es un beat de control emocional donde Carlo utiliza los celos y el instinto protector de Sonny hacia Connie como combustible para su propia destrucción.<br>La escalada técnica: La secuencia sigue un crescendo de intensidad narrativa: la llamada de la mujer a Connie, el llanto desesperado, la reacción física violenta de Sonny contra Carlo y, finalmente, el asesinato en el peaje. Es un beat de consecuencia directa: cada acción de Sonny en esta secuencia lo lleva inexorablemente al cierre de la trampa.."
+        },
+        {
+          "name": "06 APOLLONIA ",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 06: Culminación principal -MICHAEL SE ENAMORA pero sufre el punto mas bajo- ",
+          "text1": "Esta secuencia funciona como un beat de pausa estratégica que, bajo una falsa apariencia de paz en Sicilia, esconde el dolor más profundo del arco de Michael. Es el momento en que su humanidad es puesta a prueba antes de la entrega total a su destino.",
+          "text2": " Un beat de contraste: Tras la violencia frenética, el encuentro con Apollonia representa la oportunidad de una vida legítima y personal, un 'paraíso' donde Michael cree que puede escapar del legado Corleone.<br>El punto de caída (Low Point): Esta es la secuencia que marca el descenso emocional. El guion utiliza el amor por Apollonia como un 'ancla' para que el dolor de su pérdida posterior sea insoportable. Es un beat de inversión: cuanto más se abre Michael al amor, más devastador es el impacto cuando la tragedia lo golpea.<br>La acumulación de los beats de dolor: La estructura de esta secuencia prepara el terreno para la doble tragedia: la muerte de Sonny y la muerte de Apollonia. Estos no son eventos aislados, sino un beat de purga donde todo lo que Michael intentó proteger fuera del 'negocio' es destruido.<br>Análisis técnico: Como ejercicio de ritmo, observa cómo el guion ralentiza el tiempo en Sicilia para que el espectador baje la guardia junto con Michael. Es una técnica de contrastes emocionales: si no sintiéramos la paz de este exilio, la transformación final en el 'Don' no tendría el mismo peso trágico."
+        },
+        {
+          "name": "07 Sicilia",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 07: El Exilio Siciliano - Amor y Tragedia",
+          "text1": "Michael se refugia en las raíces ancestrales de Corleone, experimentando un ritmo de vida pastoral. La fotografía cambia a tonos cálidos y polvorientos mediterráneos, marcando la trágica pérdida de Apolonia que endurecerá su carácter para siempre.",
+          "text2": "Sicilia representa el retorno a los orígenes, pero también la pérdida de la inocencia. El romance con Apolonia es breve y poético, pero su muerte en el coche destinado a Michael completa su transformación. Ya no hay vuelta atrás: Michael es ahora un verdadero Corleone."
+        },
+        {
+          "name": "08 Bautismo",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 08: El Bautismo - La Consagración del Nuevo Don",
+          "text1": "El clímax maestro mediante montaje paralelo: el bautismo del sobrino entrelazado con la purga sistemática de los jefes rivales. Consumación dramática absoluta de la transformación de Michael en el nuevo Don, sellada con la emblemática puerta cerrándose ante Kay Adams.",
+          "text2": "Coppola orquesta esta secuencia como una sinfonía visual y sonora. Las promesas del bautismo ('¿Renuncias a Satanás?') se yuxtaponen con asesinatos brutales. Michael completa su ascenso al poder mientras Kay observa desde fuera, literal y metafóricamente excluida de su verdadero yo."
+        }
+      ]
+    },
+
+
+
+
+
+    {
+      "id": "alien",
+      "title": "ALIEN",
+      "year": "1979 · SCI-FI",
+      "poster": "../assets/img/alien-portada.png",
+      "status": "active",
+      "meta": {
+        "director": "Ridley Scott",
+        "guion": "Dan O'Bannon",
+        "foto": "Derek Vanlint",
+        "musica": "Jerry Goldsmith",
+        "duracion": "117 min"
+      },
+      "sequences": [
+        {
+          "name": "01 Despertar",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 01: Despertar de la Nostromo",
+          "text1": "La tripulación despierta de la criosueño tras recibir una señal misteriosa. El diseño industrial sucio y funcional establece el realismo espacial: no hay héroes brillantes, solo trabajadores cansados.",
+          "text2": "Ridley Scott crea un universo creíble donde la tecnología es utilitaria y desgastada. La nave Nostromo es un remolcador espacial, no una nave de guerra elegante."
+        },
+        {
+          "name": "02 Señal",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 02: La Señal del Planetoide",
+          "text1": "La computadora detecta una transmisión repetitiva que resulta ser una advertencia, no un SOS. La tripulación debate si investigar, priorizando el protocolo sobre la seguridad.",
+          "text2": "El momento crucial donde la curiosidad profesional se convierte en sentencia de muerte. La señal es en realidad una advertencia de peligro biológico que nadie entiende."
+        },
+        {
+          "name": "03 Huevos",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 03: La Cámara de Huevos",
+          "text1": "Kane desciende al interior de la nave alienígena y descubre una cámara llena de huevos biomecánicos. La secuencia es un ejercicio de tensión visual pura.",
+          "text2": "H.R. Giger diseña un espacio onírico y perturbador. Los huevos pulsan con vida propia. Cuando uno se abre, el facehugger ataca con precisión quirúrgica."
+        },
+        {
+          "name": "04 Parásito",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 04: El Parásito",
+          "text1": "De regreso en la nave, el facehugger se adhiere al rostro de Kane. La tripulación intenta removerlo sin éxito. Ash revela su verdadera lealtad a la corporación.",
+          "text2": "El horror corporal alcanza su máximo. El parásito respira a través de la garganta de Kane. La revelación de que Ash es un androide añade traición corporativa al horror biológico."
+        },
+        {
+          "name": "05 Chestburster",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 05: El Nacimiento",
+          "text1": "En la cena, el chestburster emerge violentamente del pecho de Kane. La secuencia más icónica del cine de terror sci-fi. Reacciones genuinas de horror de los actores.",
+          "text2": "Ridley Scott no avisó a los actores sobre la sangre falsa. Sus reacciones de asco son reales. El alien nace y escapa, comenzando su crecimiento acelerado en las sombras de la nave."
+        },
+        {
+          "name": "06 Caza",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 06: Caza en la Nave",
+          "text1": "La tripulación intenta localizar y capturar al alien adulto. Dallas entra en los ductos de ventilación en una secuencia de suspense claustrofóbica.",
+          "text2": "El alien es ahora un depredador perfecto. Los ductos estrechos convierten la caza en una trampa mortal. Dallas es asesinado. Lambert y Parker son las siguientes víctimas."
+        },
+        {
+          "name": "07 Ripley",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 07: La Última Superviviente",
+          "text1": "Ripley descubre el plan de Ash de llevar el espécimen a la Tierra sacrificando a la tripulación. Lo confronta en una escena tensa donde revela su naturaleza androide.",
+          "text2": "Ripley emerge como la verdadera heroína. Su inteligencia y pragmatismo la salvan. Ash es desactivado y en sus últimas palabras revela la fría lógica corporativa: 'Admiro su pureza'."
+        },
+        {
+          "name": "08 Autodestrucción",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 08: Escape y Autodestrucción",
+          "text1": "Ripley activa la autodestrucción de la Nostromo y huye en la lanzadera Narcissus. En los últimos segundos, rescata al gato Jones. El alien aparece en la lanzadera.",
+          "text2": "La secuencia final es un tour de force de tensión. Ripley, en ropa interior, enfrenta al alien en un espacio confinado. Lo expulsa al espacio y entra en criosueño, única superviviente."
+        }
+      ]
+    },
+
+
+
+
+
+    {
+      "id": "fightclub",
+      "title": "EL CLUB DE LA PELEA",
+      "year": "1999 · DRAMA",
+      "poster": "https://placehold.co/600x500/1c1c1c/d4af37?text=FIGHT+CLUB&font=syne",
+      "status": "active",
+      "meta": {
+        "director": "David Fincher",
+        "guion": "Jim Uhls",
+        "foto": "Jeff Cronenweth",
+        "musica": "Dust Brothers",
+        "duracion": "139 min"
+      },
+      "sequences": [
+        {
+          "name": "01 Insomnio",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 01: Insomnio y Dolor",
+          "text1": "El Narrador sufre insomnio crónico y dolor por un tumor intestinal. Su vida es un vacío consumista. La cámara recorre su condominio estéril lleno de muebles IKEA.",
+          "text2": "Fincher establece el tono nihilista. El Narrador es un hombre moderno alienado, definido por sus posesiones. Su insomnio es síntoma de una crisis existencial más profunda."
+        },
+        {
+          "name": "02 Grupos",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 02: Grupos de Apoyo",
+          "text1": "El Narrador asiste a grupos de apoyo para enfermos terminales donde finge tener enfermedades. Encuentra liberación emocional en el llanto colectivo. Marla Singer aparece como competidora.",
+          "text2": "La ironía es brutal: solo puede sentir algo fingiendo estar muriendo. Marla es su espejo oscuro, otra alma vacía buscando catarsis en el dolor ajeno. Su presencia arruina su 'terapia'."
+        },
+        {
+          "name": "03 Tyler",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 03: Conociendo a Tyler Durden",
+          "text1": "En un vuelo de negocios, el Narrador conoce a Tyler Durden, un vendedor de jabón carismático y anárquico. Su avión sufre turbulencias y el Narrador tiene una epifanía sobre su mortalidad.",
+          "text2": "Tyler representa todo lo que el Narrador no es: libre, carismático, peligroso. La turbulencia del avión es un recordatorio de la fragilidad de la vida que Tyler abraza mientras el Narrador teme."
+        },
+        {
+          "name": "04 Casa",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 04: La Casa en Paper Street",
+          "text1": "Tras la explosión de su condominio, el Narrador se muda con Tyler en una casa decadente en Paper Street. Tyler le pide que lo golpee en el estacionamiento. Nace el Club de la Pelea.",
+          "text2": "La violencia física es catártica. El primer golpe es un acto de liberación. El Club de la Pelea nace como espacio masculino primitivo donde los hombres pueden sentir algo real, aunque sea dolor."
+        },
+        {
+          "name": "05 Reglas",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 05: Las Reglas del Club",
+          "text1": "Tyler establece las reglas del Club de la Pelea: primera regla, no hablar del Club. La pelea se convierte en ritual. Los hombres llegan golpeados al trabajo, orgullosos de sus heridas.",
+          "text2": "Las reglas crean una hermandad secreta. La prohibición de hablar del Club lo hace más poderoso. La violencia se ritualiza y se convierte en religión masculina alternativa al consumismo."
+        },
+        {
+          "name": "06 Tareas",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 06: Tareas del Proyecto Mayhem",
+          "text1": "Tyler asigna 'tareas' a los miembros del Club. El Proyecto Mayhem nace como extensión del Club: sabotaje corporativo, vandalismo. El Narrador comienza a perder el control.",
+          "text2": "El anarquismo de Tyler escala de la violencia personal al terrorismo político. El Narrador ve cómo su creación se le escapa de las manos. Los miembros del Proyecto son zombies obedientes."
+        },
+        {
+          "name": "07 Revelación",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 07: La Revelación - Tyler Soy Yo",
+          "text1": "El Narrador descubre que Tyler Durden es una personalidad disociada que él mismo creó. Todas las acciones de Tyler fueron las suyas. Intenta detener el Proyecto Mayhem pero es demasiado tarde.",
+          "text2": "El giro más impactante del cine. El Narrador y Tyler son la misma persona. Su mente se dividió para crear el hombre que quería ser. La revelación recontextualiza toda la película."
+        },
+        {
+          "name": "08 Edificios",
+          "url": "https://archive.org/embed/BigBuckBunny_124",
+          "title": "Secuencia 08: Destrucción de Edificios",
+          "text1": "El Narrador intenta detener la demolición de edificios de tarjetas de crédito. Se dispara en la boca para 'matar' a Tyler. Los edificios colapsan mientras observa con Marla.",
+          "text2": "El clímax es apocalíptico. El Narrador se libera de Tyler aceptando su responsabilidad. Los edificios del sistema crediticio caen. Él y Marla se toman de la mano mientras el mundo financiero se derrumba."
+        }
+      ]
+    },
+
+
+
+
+
+    {
+      "id": "pulpfiction",
+      "title": "PULP FICTION",
+      "year": "1994 · CRIME",
+      "poster": "https://placehold.co/600x500/2a2a2a/d4af37?text=PULP+FICTION&font=syne",
+      "status": "disabled",
+      "meta": {
+        "director": "-",
+        "guion": "-",
+        "foto": "-",
+        "musica": "-",
+        "duracion": "-"
+      },
+      "sequences": []
+    }
+
+
+
+
+
+  ]
+}

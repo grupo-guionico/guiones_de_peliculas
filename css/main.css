@@ -1,0 +1,630 @@
+/* ==========================================================================
+   VARIABLES GLOBALES - COLORES Y FUENTES
+   ========================================================================== */
+:root {
+    --bg-dark: #0a0a0a;              /* Fondo principal negro */
+    --bg-card: #111111;              /* Fondo de tarjetas */
+    --text-light: #f5f5f7;           /* Texto principal blanco */
+    --text-muted: #888888;           /* Texto secundario gris */
+    --accent-gold: #d4af37;          /* Dorado principal */
+    --gold-bg: #e5c158;              /* Dorado más claro para fondos */
+    --border-color: rgba(255, 255, 255, 0.08);  /* Bordes sutiles */
+}
+
+/* ==========================================================================
+   RESET Y ESTILOS BASE
+   ========================================================================== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    background-color: var(--bg-dark); 
+    color: var(--text-light); 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+    -webkit-font-smoothing: antialiased;  /* Suavizado de fuentes en Mac */
+}
+
+/* ==========================================================================
+   HEADER - LOGO Y NAVEGACIÓN
+   ========================================================================== */
+header { 
+    padding: 30px 40px 15px 40px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px; 
+    border-bottom: 1px solid var(--border-color); 
+    background-color: var(--bg-dark); 
+}
+
+.brand-container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 60px; 
+}
+
+.brand-random-logo { 
+    width: 200px; 
+    height: 200px; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);  /* Animación suave con rebote */
+    cursor: pointer; 
+    overflow: hidden; 
+}
+
+.brand-random-logo:hover { 
+    transform: scale(1.1);  /* Zoom suave al pasar el mouse */
+}
+
+.brand-random-logo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;  /* Mantiene proporción del logo */
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN Y BÚSQUEDA
+   ========================================================================== */
+.nav-container { 
+    width: 100%; 
+    max-width: 1400px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.nav-links { 
+    display: flex; 
+    gap: 25px; 
+}
+
+.nav-btn { 
+    background: none; 
+    border: none; 
+    color: var(--text-muted); 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    transition: color 0.3s; 
+    padding: 5px 0; 
+}
+
+.nav-btn:hover, 
+.nav-btn.active { 
+    color: var(--text-light);  /* Se ilumina al pasar o estar activo */
+}
+
+/* ==========================================================================
+   CAMPO DE BÚSQUEDA
+   ========================================================================== */
+.search-block { 
+    flex: 1; 
+    max-width: 320px; 
+    position: relative; 
+}
+
+.search-input { 
+    width: 100%; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid #333; 
+    padding: 6px 35px 6px 0; 
+    color: var(--text-light); 
+    font-size: 0.85rem; 
+    transition: border-color 0.3s; 
+}
+
+.search-input:focus { 
+    outline: none; 
+    border-color: var(--accent-gold);  /* Borde dorado al escribir */
+}
+
+.search-icon { 
+    position: absolute; 
+    right: 5px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: var(--text-muted); 
+    pointer-events: none;  /* El icono no interfiere con el clic */
+}
+
+/* ==========================================================================
+   SECCIONES/VISTAS - CONTROL DE VISIBILIDAD
+   ========================================================================== */
+.view-section { 
+    display: none;  /* Oculto por defecto */
+}
+
+.view-section.active { 
+    display: block;  /* Visible cuando tiene clase 'active' */
+    animation: fadeIn 0.5s ease;  /* Animación de entrada suave */
+}
+
+.no-results-message { 
+    display: none; 
+    text-align: center; 
+    padding: 80px 20px; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+}
+
+/* ==========================================================================
+   GRID DE CATÁLOGO - 3 COLUMNAS EXACTAS SIN GAP
+   ========================================================================== */
+.catalog-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);  /* SIEMPRE 3 COLUMNAS IGUALES */
+    width: 100%;
+    gap: 0;  /* SIN ESPACIO ENTRE TARJETAS */
+}
+
+/* Responsive: 2 columnas en tablets */
+@media (max-width: 1024px) { 
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); } 
+}
+
+/* Responsive: 1 columna en móviles */
+@media (max-width: 650px) { 
+    .catalog-grid { grid-template-columns: 1fr; } 
+}
+
+/* ==========================================================================
+   TARJETAS DE PELÍCULAS
+   ========================================================================== */
+.movie-card { 
+    position: relative; 
+    aspect-ratio: 1.2/1;  /* Proporción casi cuadrada (alto 20% mayor que ancho) */
+    overflow: hidden; 
+    cursor: pointer; 
+    border-right: 1px solid var(--border-color);  /* Línea divisoria vertical */
+    border-bottom: 1px solid var(--border-color);  /* Línea divisoria horizontal */
+    background: #000; 
+}
+
+/* ==========================================================================
+   IMÁGENES DE PÓSTER - CON ENCUIDRE AL 30%
+   ========================================================================== */
+.movie-card img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;  /* Cubre todo el espacio sin deformar */
+    object-position: center 30%;  /* ENFOCA DESDE 30% ARRIBA (deja ver 25% abajo) */
+    filter: grayscale(100%);  /* Blanco y negro por defecto */
+    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);  /* Transición suave */
+}
+
+/* Efecto hover: color y zoom */
+.movie-card:hover img { 
+    filter: grayscale(0%);  /* Vuelve a color */
+    transform: scale(1.05);  /* Zoom del 5% */
+}
+
+/* ==========================================================================
+   TARJETAS DESHABILITADAS (EN PRODUCCIÓN)
+   ========================================================================== */
+.movie-card.disabled { 
+    cursor: not-allowed;  /* Cursor de prohibido */
+}
+
+.movie-card.disabled img { 
+    opacity: 0.4;  /* 40% de transparencia */
+    filter: grayscale(100%) blur(2px);  /* Blanco y negro + desenfoque */
+    transform: none !important;  /* Sin zoom al pasar el mouse */
+}
+
+.movie-card.disabled:hover img {
+    filter: grayscale(100%) blur(2px);  /* Mantiene el blur en hover */
+}
+
+/* ==========================================================================
+   INFORMACIÓN DE LA TARJETA (TÍTULO, AÑO, ETC)
+   ========================================================================== */
+.card-info { 
+    position: absolute; 
+    inset: 0;  /* Ocupa toda la tarjeta */
+    background: linear-gradient(
+        to top, 
+        rgba(0, 0, 0, 0.95) 0%,   /* Negro total abajo */
+        rgba(0, 0, 0, 0.6) 25%,   /* Negro semi-transparente al 25% */
+        transparent 80%           /* Totalmente transparente arriba */
+    ); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;  /* Texto abajo */
+    align-items: flex-start;    /* Alineado a la izquierda */
+    padding: 20px; 
+}
+
+.card-info h2 { 
+    font-family: 'Syne', sans-serif; 
+    font-size: 1.3rem; 
+    text-transform: uppercase; 
+    margin-bottom: 3px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+.card-info p { 
+    font-size: 0.68rem; 
+    color: var(--text-muted); 
+    letter-spacing: 1px; 
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+/* Badge dorado para "PRÓXIMAMENTE" */
+.status-badge { 
+    color: var(--accent-gold) !important; 
+    font-weight: 600; 
+    margin-top: 5px;
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   VISOR DE PELÍCULAS - LAYOUT PRINCIPAL
+   ========================================================================== */
+.viewer-container { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 40px 20px; 
+}
+
+.viewer-subheader { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 25px; 
+}
+
+.back-link { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover { 
+    color: var(--text-light); 
+}
+
+/* ==========================================================================
+   NAVEGACIÓN DE SECUENCIAS (BOTONES 1-8)
+   ========================================================================== */
+.sequence-nav { 
+    display: flex; 
+    gap: 6px; 
+    margin-bottom: 30px; 
+    overflow-x: auto;  /* Scroll horizontal si no caben */
+    padding-bottom: 10px; 
+}
+
+.seq-btn { 
+    background: transparent; 
+    border: 1px solid #222; 
+    color: var(--text-muted); 
+    padding: 12px 22px; 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: all 0.25s; 
+    white-space: nowrap;  /* Sin saltos de línea */
+}
+
+.seq-btn:hover { 
+    color: white; 
+    border-color: #555; 
+}
+
+.seq-btn.active { 
+    background: white; 
+    color: black; 
+    border-color: white;  /* Botón activo en blanco */
+}
+
+/* ==========================================================================
+   LAYOUT DE TRABAJO - VIDEO + SIDEBAR
+   ========================================================================== */
+.workspace-layout { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr;  /* Video ocupa 2/3, sidebar 1/3 */
+    gap: 40px; 
+}
+
+/* Responsive: una columna en tablets/móviles */
+@media (max-width: 1024px) { 
+    .workspace-layout { grid-template-columns: 1fr; } 
+}
+
+/* ==========================================================================
+   REPRODUCTOR DE VIDEO (ARCHIVE.ORG)
+   ========================================================================== */
+.archive-frame-wrapper { 
+    position: relative; 
+    width: 100%; 
+    aspect-ratio: 16/9;  /* Proporción cinematográfica */
+    background: #000; 
+    border: 1px solid var(--border-color); 
+    margin-bottom: 35px; 
+}
+
+.archive-frame-wrapper iframe { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    border: none; 
+}
+
+/* ==========================================================================
+   ANÁLISIS DE SECUENCIA - TEXTO EN DOS COLUMNAS
+   ========================================================================== */
+.analysis-title { 
+    font-family: 'Syne', sans-serif; 
+    font-size: 1.5rem; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 10px; 
+    color: var(--accent-gold); 
+}
+
+.analysis-text { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr;  /* Dos columnas de texto */
+    gap: 30px; 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    color: #ccc; 
+}
+
+/* Responsive: una columna en móviles */
+@media (max-width: 768px) { 
+    .analysis-text { grid-template-columns: 1fr; } 
+}
+
+/* ==========================================================================
+   SIDEBAR - BOTÓN HOTMART Y FICHA TÉCNICA
+   ========================================================================== */
+.sidebar-panel { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 25px; 
+}
+
+/* Tarjeta dorada de Hotmart */
+.hotmart-card { 
+    background-color: var(--gold-bg); 
+    color: #0a0a0a; 
+    padding: 35px 25px; 
+    text-align: center; 
+    border-radius: 4px; 
+}
+
+.hotmart-card h3 { 
+    font-family: 'Syne', sans-serif; 
+    font-size: 1.5rem; 
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+    font-weight: 800;
+}
+
+.hotmart-btn-anchor { 
+    display: block; 
+    background: #0a0a0a; 
+    color: white; 
+    text-decoration: none; 
+    padding: 15px; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.hotmart-btn-anchor:hover { 
+    background: #333;  /* Gris oscuro al pasar el mouse */
+}
+
+/* ==========================================================================
+   FICHA TÉCNICA - TABLA DE METADATOS
+   ========================================================================== */
+.meta-table-card { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color); 
+    padding: 25px; 
+    border-radius: 4px; 
+}
+
+.meta-table-card h4 { 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+.meta-row { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 12px 0; 
+    font-size: 0.85rem; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04); 
+}
+
+.meta-label { 
+    color: var(--text-muted); 
+}
+
+.meta-value { 
+    font-weight: 600; 
+    text-align: right; 
+}
+
+/* ==========================================================================
+   PAGINACIÓN - BOTONES ANTERIOR/SIGUIENTE
+   ========================================================================== */
+.pagination-footer { 
+    margin-top: 40px; 
+    padding-top: 20px; 
+    border-top: 1px solid var(--border-color); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.pag-btn { 
+    background: transparent; 
+    border: 1px solid #333; 
+    color: white; 
+    padding: 10px 20px; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.pag-btn:hover:not(:disabled) { 
+    background: #222; 
+}
+
+.pag-btn:disabled { 
+    opacity: 0.3; 
+    cursor: not-allowed; 
+}
+
+.pag-info { 
+    color: var(--text-muted); 
+    letter-spacing: 1px; 
+}
+
+.pag-info span { 
+    color: var(--accent-gold);  /* Números en dorado */
+}
+
+/* ==========================================================================
+   PÁGINA DE COLABORACIÓN
+   ========================================================================== */
+.collab-wrapper { 
+    max-width: 760px; 
+    margin: 0 auto; 
+    padding: 60px 25px; 
+}
+
+.collab-block { 
+    margin-bottom: 45px; 
+}
+
+.collab-wrapper h2 { 
+    font-family: 'Syne', sans-serif; 
+    color: var(--accent-gold); 
+    margin-bottom: 15px; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid #333; 
+    padding-bottom: 10px; 
+}
+
+.collab-text p { 
+    margin-bottom: 20px; 
+    line-height: 1.7; 
+    color: #ccc; 
+}
+
+.support-btn { 
+    display: inline-block; 
+    background: var(--accent-gold); 
+    color: black; 
+    padding: 15px 30px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.support-btn:hover { 
+    background: white;  /* Blanco al pasar el mouse */
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+@keyframes fadeIn { 
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+    } 
+/* ==========================================================================
+   MEGAPACK - LISTA DE DOCUMENTOS (VERSIÓN FINAL)
+   ========================================================================== */
+
+.hotmart-card .pack-subtitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 10px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.hotmart-card .pack-list,
+ul.pack-list {
+    list-style: none !important;
+    list-style-type: none !important;
+    list-style-image: none !important;
+    padding: 0 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.hotmart-card .pack-list li,
+ul.pack-list li {
+    list-style: none !important;
+    list-style-type: none !important;
+    position: relative;
+    padding: 4px 0 4px 24px;
+    margin: 0 0 8px 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #0a0a0a;
+    text-align: left;
+    display: block;
+}
+
+/* Viñeta personalizada */
+.hotmart-card .pack-list li::before,
+ul.pack-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    color: #0a0a0a;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* ELIMINAR MARKERS DEL NAVEGADOR (esto es lo que faltaba) */
+.hotmart-card .pack-list li::marker,
+.pack-list li::marker,
+ul.pack-list li::marker {
+    content: "" !important;
+    display: none !important;
+}
+
+.hotmart-card .pack-list li::-webkit-details-marker {
+    display: none !important;
+}

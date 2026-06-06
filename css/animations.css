@@ -1,0 +1,10 @@
+/* Transición para el iframe */
+.archive-frame-wrapper iframe {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Cuando la clase .is-fading está activa, el iframe se vuelve transparente */
+.archive-frame-wrapper.is-fading iframe {
+    opacity: 0;
+}
