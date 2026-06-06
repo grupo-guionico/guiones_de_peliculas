@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Guionico — Plataforma de Inmersión</title>
+
+    <!-- 1. Fuentes de Google -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- 2. FAVICONS E ICONOS (Corregidos) -->
+    <!-- Icono principal para la pestaña (64x64 con fondo sólido) -->
+    <link rel="icon" type="image/png" sizes="64x64" href="../assets/icons/favicon9.png">
+
+    <!-- Icono para dispositivos Apple (iOS) -->
+    <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+
+    <!-- Configuración para PWA (Android/Escritorio) -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- 3. Estilos CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <!-- Placeholder para el Logo -->
+            <div onclick="navigateTo('catalog')" class="brand-random-logo" title="Ir al Inicio">
+                <img src="../assets/img/logo.png" alt="Grupo Guionico">
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <div class="nav-links">
+                <button id="nav-collab" class="nav-btn" onclick="navigateTo('collab')">Colaboración</button>
+            </div>
+
+            <div class="search-block" id="top-search-wrapper">
+                <input type="text" id="movie-search-input" class="search-input" placeholder="BUSCAR GUION..."
+                    oninput="filterMovies()">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- VISTA CATÁLOGO -->
+        <section id="catalog-view" class="view-section active">
+            <div id="search-empty-state" class="no-results-message">No se encontraron guiones en el catálogo</div>
+            <div class="catalog-grid" id="main-catalog-grid">
+                <!-- Se llena dinámicamente con JS -->
+            </div>
+        </section>
+
+    <!-- VISTA VISOR -->
+    <section id="viewer-view" class="view-section">
+        <div class="viewer-container">
+            <div class="viewer-subheader">
+                <a class="back-link" onclick="navigateTo('catalog')">← Volver al catálogo</a>
+                <h2 id="movie-title-display">PELÍCULA</h2>
+            </div>
+    
+            <div class="sequence-nav" id="sequence-navbar"></div>
+    
+            <div class="workspace-layout">
+                <div class="main-workspace-content">
+                    <!-- Contenedor del Video (Fade Effect aplicado aquí) -->
+                    <div class="archive-frame-wrapper is-fading" id="video-frame-container"></div>
+    
+                    <h2 class="analysis-title" id="analysis-heading">Análisis de la Secuencia</h2>
+                    <div class="analysis-text" id="analysis-paragraph-container"></div>
+                </div>
+    
+                <div class="sidebar-panel">
+                    <!-- MEGAPACK -->
+                    <div class="hotmart-card">
+                        <h3>MEGAPACK</h3>
+                        <p class="pack-subtitle">21 documentos incluidos:</p>
+                        <ul class="pack-list">
+                            <li>Guion completo de especificaciones traducido al español</li>
+                            <li>Guion original en inglés</li>
+                            <li>8 secuencias en formato PDF</li>
+                            <li>8 secuencias en formato FDX</li>
+                            <li>Guion técnico en inglés</li>
+                            <li>Guion de transcripción completo</li>
+                        </ul>
+                        <a href="https://go.hotmart.com/P106011006U" target="_blank" class="hotmart-btn-anchor">
+                            Adquirir Pack ($14.50)
+                        </a>
+                    </div>
+    
+                    <!-- FICHA TÉCNICA -->
+                    <div class="meta-table-card">
+                        <h4>Ficha Técnica</h4>
+                        <div class="meta-row">
+                            <div class="meta-label">Director</div>
+                            <div class="meta-value" id="meta-director">-</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Guion</div>
+                            <div class="meta-value" id="meta-guion">-</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Fotografía</div>
+                            <div class="meta-value" id="meta-foto">-</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Música</div>
+                            <div class="meta-value" id="meta-musica">-</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Duración</div>
+                            <div class="meta-value" id="meta-duracion">-</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-label">Secuencia</div>
+                            <div class="meta-value" id="meta-sec-index">-</div>
+                        </div>
+    
+                        <!-- PAGINACIÓN (solo UNA vez aquí) -->
+                        <div class="pagination-footer">
+                            <button class="pag-btn" id="btn-prev-seq" onclick="triggerPrevSeq()">&lt; Anterior</button>
+                            <div class="pag-info" id="footer-counter-text">Secuencia <span>01</span> de 08</div>
+                            <button class="pag-btn" id="btn-next-seq" onclick="triggerNextSeq()">Siguiente &gt;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- VISTA COLABORACIÓN -->
+        <section id="collab-view" class="view-section">
+            <div class="collab-wrapper">
+                    <h2>¿Quiénes Somos?</h2>
+                    <div class="collab-text">
+                        <p>Somos <strong>Grupo Guionico</strong>. 
+                      Un proyecto educativo independiente dedicado a incentivar la lectura inmersiva de guiones cinematográficos en los nuevos guionistas. <br> Nuestra misión es transformar la manera
+                        en que los nuevos escritores estudian cine, mediante una lectura técnico que compara el borrador original de producción  con la escena finalmente filmada.<br>  
+                        <br>
+                         <strong>¿CÓMO LO HACEMOS? </strong> <br>
+                        Más allá de la teoría, creamos herramientas de entrenamiento inmersivo. Presentamos guiones fundamentales rigurosamente
+                        traducidos al español y bajo los estándares de formato de la industria. A través de nuestras lecturas en formato roll
+                        —acompañadas de diseño sonoro y foley—, el estudiante puede diseccionar cada beat de la historia; ese instante preciso
+                        donde la acción cambia, la emoción emerge o el conflicto se intensifica.<br>
+                        <br>
+                         Al contrastar paso a paso la intención escrita
+                        con el resultado visual, el guionista puede internalizar el ritmo, la cadencia y la estructura dramática.
+                        <br><br>
+                        <strong> EL OIDO</strong> :<br>
+                        Creemos que el ritmo es el latido de un guion. Al enfocarnos en la ejecución de los beats y la brecha entre el papel y
+                        la pantalla, nuestras lecturas (en su mayoría interpretadas en voz humana) buscan ser el recurso definitivo para quienes
+                        desean dominar el lenguaje cinematográfico con la precisión que exige la industria..</p>
+                    </div>
+                </div>
+                
+                    <div style="text-align: center; margin-top: 30px;">
+                        <div class="support-btn" onclick="alert('Próximamente')">LECTURA INMERSIVA</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Solo registrar en producción o localhost seguro
+        if ('serviceWorker' in navigator && (location.hostname === 'localhost' || location.protocol === 'https:')) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(reg => console.log('✅ SW listo:', reg.scope))
+                    .catch(err => console.warn('⚠️ SW no registrado:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
