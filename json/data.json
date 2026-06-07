@@ -87,7 +87,7 @@
       "title": "ALIEN",
       "year": "1979 · SCI-FI",
       "poster": "assets/img/alien-portada.png",
-      "status": "active",
+      "status": "disabled",
       "meta": {
         "director": "Ridley Scott",
         "guion": "Dan O'Bannon",
@@ -160,11 +160,11 @@
 
 
     {
-      "id": "fightclub",
+      "id": "el-club-de-la-pelea",
       "title": "EL CLUB DE LA PELEA",
       "year": "1999 · DRAMA",
       "poster": "assets/img/el-club-de-la-pelea-poster.png ",
-      "status": "active",
+      "status": "disabled",
       "meta": {
         "director": "David Fincher",
         "guion": "Jim Uhls",
@@ -237,10 +237,26 @@
 
 
     {
-      "id": "pulpfiction",
-      "title": "PULP FICTION",
-      "year": "1994 · CRIME",
-      "poster": "https://placehold.co/600x500/2a2a2a/d4af37?text=PULP+FICTION&font=syne",
+      "id": "la pasion de Cristo",
+      "title": "LA PASIÓN DE CRISTO",
+      "year": "ÉPICA, ESPIRITU",
+      "poster": "assets/img/la-pasion-de-Cristo-poster.png",
+      "status": "disabled",
+      "meta": {
+        "director": "-",
+        "guion": "-",
+        "foto": "-",
+        "musica": "-",
+        "duracion": "-"
+      },
+      "sequences": []
+    },
+
+    {
+      "id": "whiplash",
+      "title": "WIPLASH",
+      "year": "2014",
+      "poster": "assets/img/wiplash.png",
       "status": "disabled",
       "meta": {
         "director": "-",
