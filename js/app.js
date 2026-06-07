@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function fetchData() {
   // Ruta relativa al JSON
-  fetch("../json/data.json")
+  fetch("son/data.json")
     .then((response) => response.json())
     .then((data) => {
       dbMovies = data.movies;
