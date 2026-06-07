@@ -1,9 +1,10 @@
 // sw.js
-const CACHE_NAME = "guionico-v2"; //  CAMBIA ESTE NÚMERO (v1, v2, v3...) EN CADA DEPLOY
+const CACHE_NAME = "guionico-v4"; //  CAMBIA ESTE NÚMERO (v1, v2, v3...) EN CADA DEPLOY
 
 // Archivos estáticos que SÍ se cachean (CSS, JS, imágenes)
 const STATIC_ASSETS = [
-  "/html/index.html",
+  "/",
+  "/index.html",
   "/css/main.css",
   "/js/app.js",
   "/assets/img/logo.png", 
