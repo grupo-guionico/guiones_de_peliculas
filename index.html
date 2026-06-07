@@ -13,18 +13,18 @@
 
     <!-- 2. FAVICONS E ICONOS (Corregidos) -->
     <!-- Icono principal para la pestaña (64x64 con fondo sólido) -->
-    <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon9.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon9.png">
 
     <!-- Icono para dispositivos Apple (iOS) -->
-    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 
     <!-- Configuración para PWA (Android/Escritorio) -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0a0a0a">
 
     <!-- 3. Estilos CSS -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <div class="brand-container">
             <!-- Placeholder para el Logo -->
             <div onclick="navigateTo('catalog')" class="brand-random-logo" title="Ir al Inicio">
-                <img src="assets/img/logo.png" alt="Grupo Guionico">
+                <img src="/assets/img/logo.png" alt="Grupo Guionico">
             </div>
         </div>
 
@@ -167,7 +167,7 @@
         </section>
     </main>
 
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
     <script>
         // Solo registrar en producción o localhost seguro
         if ('serviceWorker' in navigator && (location.hostname === 'localhost' || location.protocol === 'https:')) {
