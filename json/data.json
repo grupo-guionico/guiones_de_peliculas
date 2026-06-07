@@ -9,7 +9,7 @@
       "id": "godfather",
       "title": "EL PADRINO",
       "year": "1972 · CRIME",
-      "poster": "../assets/img/el-padrino-poster.png",
+      "poster": "assets/img/el-padrino-poster.png",
       "status": "active",
       "meta": {
         "director": "Francis Ford Coppola",
@@ -86,7 +86,7 @@
       "id": "alien",
       "title": "ALIEN",
       "year": "1979 · SCI-FI",
-      "poster": "../assets/img/alien-portada.png",
+      "poster": "assets/img/alien-portada.png",
       "status": "active",
       "meta": {
         "director": "Ridley Scott",
