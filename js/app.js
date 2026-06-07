@@ -15,8 +15,39 @@ function fetchData() {
     .then((data) => {
       dbMovies = data.movies;
       renderCatalog();
+      // Verificar si hay ancla en la URL después de cargar los datos
+      checkURLHash();
     })
     .catch((error) => console.error("Error cargando JSON:", error));
+}
+
+// NUEVA FUNCIÓN: Verificar ancla en la URL
+function checkURLHash() {
+  const hash = window.location.hash.substring(1); // Quita el #
+  if (!hash) return;
+
+  // Formato esperado: "el-padrino-1" o "alien-3"
+  const parts = hash.split("-");
+  const seqNumber = parseInt(parts[parts.length - 1]);
+  const movieId = parts.slice(0, -1).join("-");
+
+  if (isNaN(seqNumber)) return;
+
+  // Buscar la película
+  const movieData = dbMovies.find((m) => m.id === movieId);
+  if (!movieData) return;
+
+  // Abrir el visor en la secuencia correcta
+  const seqIdx = seqNumber - 1;
+  if (seqIdx >= 0 && seqIdx < movieData.sequences.length) {
+    openMovieViewer(movieId, movieData.title, seqIdx);
+  }
+}
+
+// NUEVA FUNCIÓN: Actualizar URL con ancla
+function updateURLHash(movieId, seqIdx) {
+  const hash = `${movieId}-${seqIdx + 1}`;
+  window.history.pushState(null, null, `#${hash}`);
 }
 
 function renderCatalog() {
@@ -96,7 +127,8 @@ function filterMovies() {
     visibleCount === 0 ? "block" : "none";
 }
 
-function openMovieViewer(movieId, movieName) {
+// MODIFICADO: Agregar parámetro initialSeqIdx
+function openMovieViewer(movieId, movieName, initialSeqIdx = 0) {
   const movieData = dbMovies.find((m) => m.id === movieId);
   if (!movieData) return;
 
@@ -121,14 +153,20 @@ function openMovieViewer(movieId, movieName) {
     btn.onclick = () => loadSequence(idx);
     navbar.appendChild(btn);
   });
-  loadSequence(0);
+
+  // Cargar la secuencia inicial especificada
+  loadSequence(initialSeqIdx);
 }
 
+// MODIFICADO: Actualizar URL con ancla al cargar secuencia
 function loadSequence(idx) {
   if (isWorking) return;
   const movieData = dbMovies.find((m) => m.id === currentMovieKey);
   const seq = movieData.sequences[idx];
   currentSeqIdx = idx;
+
+  // NUEVO: Actualizar URL con ancla
+  updateURLHash(currentMovieKey, idx);
 
   document
     .querySelectorAll(".seq-btn")
