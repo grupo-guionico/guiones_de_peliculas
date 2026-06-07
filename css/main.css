@@ -197,7 +197,7 @@ header {
     height: 100%; 
     object-fit: cover;  /* Cubre todo el espacio sin deformar */
     object-position: center 30%;  /* ENFOCA DESDE 30% ARRIBA (deja ver 25% abajo) */
-    filter: grayscale(100%);  /* Blanco y negro por defecto */
+    filter: grayscale(10%);  /* Blanco y negro por defecto */
     transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);  /* Transición suave */
 }
 

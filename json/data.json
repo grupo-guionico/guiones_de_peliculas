@@ -11,12 +11,13 @@
       "year": "1972 · CRIME",
       "poster": "assets/img/el-padrino-poster.png",
       "status": "active",
-      "meta": {
+        "meta": {
         "director": "Francis Ford Coppola",
         "guion": "Mario Puzo, F.F. Coppola",
         "foto": "Gordon Willis",
         "musica": "Nino Rota",
         "duracion": "175 min"
+
       },
       "sequences": [
         {
@@ -27,7 +28,7 @@
           "text2": "Esta secuencia introductoria establece el tono moral ambiguo de la película. Mientras afuera se celebra una boda italiana tradicional, adentro se negocia justicia fuera de la ley. El contraste entre luz y oscuridad no es solo estético, es temático."
         },
         {
-          "name": "02 EL ATENTADO",
+          "name": "02 ***EN PRODUCCIÓN****   /  EL ATENTADO",
           "url": "https://archive.org/embed/BigBuckBunny_124",
           "title": "Secuencia 02: INCIDENTE INCITADOR Y PRIMER PUNTO DE GIRO- El no a Sollozo, El atentado al DON",
           "text1": "Esta secuencia es el motor narrativo que rompe el equilibrio del primer acto. Aquí, el negocio de los narcóticos propuesto por Sollozzo funciona como el beat de confrontación necesario para forzar la evolución de la familia.",
@@ -41,7 +42,7 @@
           "text2": "El beat de carácter: <BR>Mientras la familia se tambalea, Sonny toma el control, dejando al descubierto que su temperamento impulsivo —donde la fuerza siempre está por encima de la inteligencia— se convierte en el mayor obstáculo para la supervivencia de los Corleone.<br>"
         },
         {
-          "name": "04 MICHAEL ASESINA",
+          "name": "04***EN PRODUCCIÓN*** MICHAEL ASESINA",
           "url": "https://archive.org/embed/BigBuckBunny_124",
           "title": "Secuencia 04: PUNTO MEDIO e INCIDENTE INCITADOR : El capitán golpea a Michael Y michael decide asesinar",
           "text1": "Esta es la secuencia donde Michael Corleone deja de ser un observador para convertirse en el protagonista del conflicto. Es el punto medio donde su transformación interna se hace tangible ante nuestros ojos. <BR>Michael se reúne con Sollozzo y el capitán McCluskey en el pequeño restaurante italiano. El diseño sonoro se convierte en el motor de la tensión mediante el ruido estridente del tren elevado, reflejando el caos psicológico antes del disparo.",
@@ -55,21 +56,21 @@
           "text2": "- El beat de manipulación: La trampa no es el tiroteo en el peaje; la trampa comienza mucho antes con la orquestación de Carlo. Es un beat de control emocional donde Carlo utiliza los celos y el instinto protector de Sonny hacia Connie como combustible para su propia destrucción.<br>La escalada técnica: La secuencia sigue un crescendo de intensidad narrativa: la llamada de la mujer a Connie, el llanto desesperado, la reacción física violenta de Sonny contra Carlo y, finalmente, el asesinato en el peaje. Es un beat de consecuencia directa: cada acción de Sonny en esta secuencia lo lleva inexorablemente al cierre de la trampa.."
         },
         {
-          "name": "06 APOLLONIA ",
+          "name": "***EN PRODUCCIÓN***06 APOLLONIA ",
           "url": "https://archive.org/embed/BigBuckBunny_124",
           "title": "Secuencia 06: Culminación principal -MICHAEL SE ENAMORA pero sufre el punto mas bajo- ",
           "text1": "Esta secuencia funciona como un beat de pausa estratégica que, bajo una falsa apariencia de paz en Sicilia, esconde el dolor más profundo del arco de Michael. Es el momento en que su humanidad es puesta a prueba antes de la entrega total a su destino.",
           "text2": " Un beat de contraste: Tras la violencia frenética, el encuentro con Apollonia representa la oportunidad de una vida legítima y personal, un 'paraíso' donde Michael cree que puede escapar del legado Corleone.<br>El punto de caída (Low Point): Esta es la secuencia que marca el descenso emocional. El guion utiliza el amor por Apollonia como un 'ancla' para que el dolor de su pérdida posterior sea insoportable. Es un beat de inversión: cuanto más se abre Michael al amor, más devastador es el impacto cuando la tragedia lo golpea.<br>La acumulación de los beats de dolor: La estructura de esta secuencia prepara el terreno para la doble tragedia: la muerte de Sonny y la muerte de Apollonia. Estos no son eventos aislados, sino un beat de purga donde todo lo que Michael intentó proteger fuera del 'negocio' es destruido.<br>Análisis técnico: Como ejercicio de ritmo, observa cómo el guion ralentiza el tiempo en Sicilia para que el espectador baje la guardia junto con Michael. Es una técnica de contrastes emocionales: si no sintiéramos la paz de este exilio, la transformación final en el 'Don' no tendría el mismo peso trágico."
         },
         {
-          "name": "07 Sicilia",
+          "name": "07 ***EN PRODUCCIÓN***Sicilia",
           "url": "https://archive.org/embed/BigBuckBunny_124",
           "title": "Secuencia 07: El Exilio Siciliano - Amor y Tragedia",
           "text1": "Michael se refugia en las raíces ancestrales de Corleone, experimentando un ritmo de vida pastoral. La fotografía cambia a tonos cálidos y polvorientos mediterráneos, marcando la trágica pérdida de Apolonia que endurecerá su carácter para siempre.",
           "text2": "Sicilia representa el retorno a los orígenes, pero también la pérdida de la inocencia. El romance con Apolonia es breve y poético, pero su muerte en el coche destinado a Michael completa su transformación. Ya no hay vuelta atrás: Michael es ahora un verdadero Corleone."
         },
         {
-          "name": "08 Bautismo",
+          "name": "08 ***EN PRODUCCIÓN***Bautismo",
           "url": "https://archive.org/embed/BigBuckBunny_124",
           "title": "Secuencia 08: El Bautismo - La Consagración del Nuevo Don",
           "text1": "El clímax maestro mediante montaje paralelo: el bautismo del sobrino entrelazado con la purga sistemática de los jefes rivales. Consumación dramática absoluta de la transformación de Michael en el nuevo Don, sellada con la emblemática puerta cerrándose ante Kay Adams.",
@@ -84,7 +85,7 @@
 
     {
       "id": "alien",
-      "title": "ALIEN",
+      "title": "ALIEN el octavo pasajero",
       "year": "1979 · SCI-FI",
       "poster": "assets/img/alien-portada.png",
       "status": "disabled",
@@ -239,7 +240,7 @@
     {
       "id": "la pasion de Cristo",
       "title": "LA PASIÓN DE CRISTO",
-      "year": "ÉPICA, ESPIRITU",
+      "year": "2004 ÉPICA, ESPIRITU",
       "poster": "assets/img/la-pasion-de-Cristo-poster.png",
       "status": "disabled",
       "meta": {
@@ -254,9 +255,41 @@
 
     {
       "id": "whiplash",
-      "title": "WIPLASH",
+      "title": "WHIPLASH",
       "year": "2014",
-      "poster": "assets/img/wiplash.png",
+      "poster": "assets/img/whiplash-poster.png",
+      "status": "disabled",
+      "meta": {
+        "director": "-",
+        "guion": "-",
+        "foto": "-",
+        "musica": "-",
+        "duracion": "-"
+      },
+      "sequences": []
+    },
+    
+    {
+      "id": "silencio",
+      "title": "SILENCIO",
+      "year": "2016",
+      "poster": "assets/img/silencio-poster.png",
+      "status": "disabled",
+      "meta": {
+        "director": "-",
+        "guion": "-",
+        "foto": "-",
+        "musica": "-",
+        "duracion": "-"
+      },
+      "sequences": []
+    },
+
+    {
+      "id": "pulp-fiction",
+      "title": "PULP FICTION",
+      "year": "1994",
+      "poster": "assets/img/pulp-fiction-poster.png",
       "status": "disabled",
       "meta": {
         "director": "-",
